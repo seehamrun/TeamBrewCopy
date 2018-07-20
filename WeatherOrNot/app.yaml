@@ -4,8 +4,8 @@ threadsafe: true
 
 handlers:
 - url: /
-  static_files: static/main_page.html
-  upload: static/main_page.html
+  static_files: templates/main_page.html
+  upload: templates/main_page.html
 - url: /static.*
   static_dir: static
 - url: /.*
