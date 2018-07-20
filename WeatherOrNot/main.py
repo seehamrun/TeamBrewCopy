@@ -20,6 +20,7 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/main-page.html")
 
+
 class AddItem(webapp2.RequestHandler):
     def post(self):
         itemId = self.request.get('id')
@@ -27,6 +28,8 @@ class AddItem(webapp2.RequestHandler):
         newItem = Item(id=itemId)
         itemId.put
 
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.write(response_html.render())
 
 
 app = webapp2.WSGIApplication([
