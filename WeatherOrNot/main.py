@@ -23,18 +23,25 @@ class MainPage(webapp2.RequestHandler):
         return self.response.write(response_html.render())
 
 
+# class AddItem(webapp2.RequestHandler):
+#     def post(self):
+#         itemId = self.request.get('id')
+#         logging.info('server saw a request to add %s to list of favorites' % (itemId))
+#         newItem = Item(id=itemId)
+#         itemId.put
+
+
 class AddItem(webapp2.RequestHandler):
-    def post(self):
-        itemId = self.request.get('id')
-        logging.info('server saw a request to add %s to list of favorites' % (itemId))
-        newItem = Item(id=itemId)
-        itemId.put
+    def get(self):
+        response_html = jinja_env.get_template("templates/add_clothes.html")
+        self.response.headers['Content-Type'] = 'text/html'
+        return self.response.write(response_html.render())
 
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
-    ('/Wardrobe', Wardrobe),
-    ('/AddItem', AddItem),
-    ('/Suggestions', Suggestions),
-    ('/Outfits', Outfits),
+    # ('/wardrobe', Wardrobe),
+    ('/add_item', AddItem)
+    # ('/suggestions', Suggestions),
+    # ('/outfits', Outfits),
 ], debug=True)
