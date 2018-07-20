@@ -28,9 +28,6 @@ class AddItem(webapp2.RequestHandler):
         newItem = Item(id=itemId)
         itemId.put
 
-        self.response.headers['Content-Type'] = 'text/html'
-        self.response.write(response_html.render())
-
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
