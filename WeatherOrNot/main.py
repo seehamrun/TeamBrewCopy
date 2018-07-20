@@ -18,7 +18,9 @@ jinja_env = jinja2.Environment(
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
-        response_html = jinja_env.get_template("templates/main-page.html")
+        response_html = jinja_env.get_template("templates/main_page.html")
+        self.response.headers['Content-Type'] = 'text/html'
+        return self.response.write(response_html.render())
 
 
 class AddItem(webapp2.RequestHandler):
