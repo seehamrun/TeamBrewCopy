@@ -6,19 +6,26 @@
 
 </head>
 <body>
+  <div>
+    <h1> Weather Widget goes here</h1>
+  </div>
 <div class="container">
 <div class="col-md-6">
     <div class="form-group">
-        <label>Upload Image</label>
+      <label>Upload Image Here!</label>
         <div class="input-group">
             <span class="input-group-btn">
                 <span class="btn btn-default btn-file">
                     Browse… <input type="file" name = "imgInp" id="imgInp"><!--THIS ONE IS THE ID OF WHAT WAS INPUTTED-->
                 </span>
             </span>
-            <input type="text" class="form-control" readonly>
+            
         </div>
-        <img id='img-upload' src = "{{image_upload}}"/><!--Where to reupload the pictures-->
+        <input type="button" class="btn" id="temp_save" value="Upload"  />
+        <div>
+          <img id='img-upload' src = "{{image_upload}}"/><!--Where to reupload the pictures-->
+        </div>
+        <input type="button" class="btn" id = "save_to_wardrobe" value="submit"  />
     </div>
 </div>
 </div>
