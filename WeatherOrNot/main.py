@@ -15,7 +15,8 @@ jinja_env = jinja2.Environment(
 class MainPage(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/main-page.html")
-
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.write(response_html.render())
 
 
 app = webapp2.WSGIApplication([
