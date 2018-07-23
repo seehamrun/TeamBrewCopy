@@ -7,7 +7,6 @@ import json
 from google.appengine.ext import ndb
 from google.appengine.api import urlfetch
 
-
 class WardrobeSave(ndb.Model):
     url = ndb.StringProperty()
 
@@ -34,7 +33,7 @@ class AddClothingHandler(webapp2.RequestHandler):
     def post(self):
         requestUrl = self.request.get('url')
         logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
-        favoriteUrl = AddClothing(url=requestUrl)
+        favoriteUrl = WardrobeSave(url=requestUrl)
         favoriteUrl.put()
 
 
