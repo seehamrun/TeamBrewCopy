@@ -58,6 +58,7 @@ class AddClothingHandler(webapp2.RequestHandler):
         elif material=='Wool':
 
         elif material == 'Polyester':
+            
         #result = int(number1) + int(number2)
         #self.response.write(response_html % (result, number1, number2))
         values = {
