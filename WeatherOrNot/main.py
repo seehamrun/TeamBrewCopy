@@ -7,7 +7,6 @@ import json
 from google.appengine.ext import ndb
 from google.appengine.api import urlfetch
 
-
 class WardrobeSave(ndb.Model):
     url = ndb.StringProperty()
 
