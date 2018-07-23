@@ -1,5 +1,3 @@
-
-
 var currentGifUrl = null;
 var feedback = function(res) {
     if (res.success === true) {
@@ -13,7 +11,7 @@ var feedback = function(res) {
 };
 
 new Imgur({
-    clientid: imgur_key, //You can change this ClientID
+    clientid: "ea32dd4d0404854", //You can change this ClientID
     callback: feedback
 });
 
@@ -27,10 +25,10 @@ new Imgur({
 // doneCallback should be a function, which addGifToFavorites will invoke when
 // the gifUrl is saved successfully.
 function addGifToFavorites(input_url, doneCallback) {
-  var document.querySelector('#type')
-  var document.querySelector('#materials')
-  var document.querySelector('#length')
-  jQuery.post("/add_favorite", {url:input_url}, doneCallback);
+  var type = document.querySelector('#type').value;
+  var materials= document.querySelector('#materials').value;
+  var length =document.querySelector('#length').value;
+  jQuery.post("/add_item", {url:input_url, type, length, materials}, doneCallback);
 }
 
 // TODO: Create an event handler for when the button is clicked
@@ -38,7 +36,7 @@ function addGifToFavorites(input_url, doneCallback) {
 
 function submitClick() {
   addGifToFavorites(currentGifUrl, () => {
-    alert("saved" + currentGifUrl)
+    alert("saved")
 })
 
 }

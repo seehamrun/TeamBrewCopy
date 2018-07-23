@@ -9,6 +9,9 @@ from google.appengine.api import urlfetch
 
 class WardrobeSave(ndb.Model):
     url = ndb.StringProperty()
+    type=ndb.StringProperty()
+    materials=ndb.StringProperty()
+    length=ndb.StringProperty()
 
 
 jinja_env = jinja2.Environment(
@@ -30,6 +33,7 @@ class AddClothingHandler(webapp2.RequestHandler):
         response_html = jinja_env.get_template("templates/upload-images/index.html")
         self.response.headers['Content-Type'] = 'text/html'
         return self.response.write(response_html.render())
+<<<<<<< HEAD
         self.response.headers['Content-Type'] = 'text/html'
         response_html = jinja_env.get_template('templates/calc.html')
         length = self.request.get('length')
@@ -58,20 +62,22 @@ class AddClothingHandler(webapp2.RequestHandler):
         # elif material=='Wool':
         #
         # elif material == 'Polyester':
+=======
+
+>>>>>>> a06a81f51eb3a2073a314c919f07c829b0f3421e
 
         #result = int(number1) + int(number2)
         #self.response.write(response_html % (result, number1, number2))
-        values = {
-            "tempResult": result,
-            "tempNumber1": number1,
-            "tempNumber2": number2,
-        }
-        self.response.write(response_html.render(values))
     def post(self):
         requestUrl = self.request.get('url')
+        requestType=self.request.get('type')
+        requestLength=self.request.get('length')
+        requestMaterial=self.request.get('materials')
+        stored_clothing = WardrobeSave(type=requestType,
+            url=requestUrl, length=requestLength, materials=requestMaterial)
+        stored_clothing.put()
+        response_html = jinja_env.get_template('templates/upload-images/index.html')
         logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
-        favoriteUrl = WardrobeSave(url=requestUrl)
-        favoriteUrl.put()
 
 
 
