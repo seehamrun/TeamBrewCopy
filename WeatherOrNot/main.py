@@ -24,6 +24,8 @@ class MainPage(webapp2.RequestHandler):
         response_html = jinja_env.get_template("templates/main_page.html")
 
 
+#class AddItem(webapp2.RequestHandler):
+
 class AddClothingHandler(webapp2.RequestHandler):
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -35,6 +37,7 @@ class AddClothingHandler(webapp2.RequestHandler):
 >>>>>>> 67ebbd70bf1eb9ff35188413a038decbed6d92c8
 >>>>>>> cd0aa75d9d3333282de8ca6c5f8bef2f152c39da
 =======
+>>>>>>> 26db95ca41e949341af5a46b0f6e6aa5813f2288
     def post(self):
         requestUrl = self.request.get('url')
         logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
@@ -49,15 +52,21 @@ class WardrobePage(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
 <<<<<<< HEAD
+<<<<<<< HEAD
     ('/add_favorite', AddClothingHandler),
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 26db95ca41e949341af5a46b0f6e6aa5813f2288
     ('/', MainPage),
     ('/Wardrobe', WardrobePage),
     ('/AddItem', AddItem),
     ('/Suggestions', Suggestions),
     ('/Outfits', Outfits),
     ('/add_favorite', AddFavoriteHandler),
+<<<<<<< HEAD
 >>>>>>> 67ebbd70bf1eb9ff35188413a038decbed6d92c8
 >>>>>>> cd0aa75d9d3333282de8ca6c5f8bef2f152c39da
+=======
+>>>>>>> 26db95ca41e949341af5a46b0f6e6aa5813f2288
 ], debug=True)
