@@ -27,6 +27,9 @@ new Imgur({
 // doneCallback should be a function, which addGifToFavorites will invoke when
 // the gifUrl is saved successfully.
 function addGifToFavorites(input_url, doneCallback) {
+  var document.querySelector('#type')
+  var document.querySelector('#materials')
+  var document.querySelector('#length')
   jQuery.post("/add_favorite", {url:input_url}, doneCallback);
 }
 
