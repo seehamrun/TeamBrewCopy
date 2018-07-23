@@ -18,7 +18,7 @@ jinja_env = jinja2.Environment(
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
-        response_html = jinja_env.get_template("templates/main-page.html")
+        response_html = jinja_env.get_template("templates/main_page.html")
 
 
 class AddItem(webapp2.RequestHandler):
@@ -28,10 +28,14 @@ class AddItem(webapp2.RequestHandler):
         newItem = Item(id=itemId)
         itemId.put
 
+class WardrobePage(webapp2.RequestHandler):
+    def get(self):
+        response_html = jinja_env.get_template("templates/wardrobe_page.html")
+
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
-    ('/Wardrobe', Wardrobe),
+    ('/Wardrobe', WardrobePage),
     ('/AddItem', AddItem),
     ('/Suggestions', Suggestions),
     ('/Outfits', Outfits),
