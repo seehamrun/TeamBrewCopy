@@ -28,6 +28,7 @@ class AddItem(webapp2.RequestHandler):
 =======
 class AddClothingHandler(webapp2.RequestHandler):
 <<<<<<< HEAD
+<<<<<<< HEAD
     def get(self):
         response_html = jinja_env.get_template("Imgur-Upload-master/index.html")
         self.response.headers['Content-Type'] = 'text/html'
@@ -35,6 +36,7 @@ class AddClothingHandler(webapp2.RequestHandler):
 =======
 >>>>>>> 67ebbd70bf1eb9ff35188413a038decbed6d92c8
 >>>>>>> cd0aa75d9d3333282de8ca6c5f8bef2f152c39da
+=======
     def post(self):
         requestUrl = self.request.get('url')
         logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
