@@ -1,9 +1,11 @@
 <html>
   <head>
+    <title>WARDROBE</title>
+    <link rel="stylesheet" href="style.css"></link>
   </head>
   <body>
     {% for item in allWardrobe %}
-      <img src= "{{item.url}}" />
+      <img class="img" src= "{{item.url}}" />
     {% endfor %}
   </body>
 </html>

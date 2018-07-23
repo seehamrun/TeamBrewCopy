@@ -44,11 +44,11 @@ class WardrobePage(webapp2.RequestHandler):
         values = {
             "allWardrobe": WardrobeSave.query().fetch()
         }
-        self.response.write(template.render(values))
+        self.response.write(response_html.render(values))
 
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
-    ('/Wardrobe', WardrobePage),
-    ('/add_favorite', AddClothingHandler)
+    ('/wardrobe', WardrobePage),
+    ('/add_item', AddClothingHandler)
 ], debug=True)
