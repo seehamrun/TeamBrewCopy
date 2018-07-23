@@ -8,7 +8,7 @@ from google.appengine.ext import ndb
 from google.appengine.api import urlfetch
 
 
-class WardrobeSave(ndb.Model):
+class AddClothing(ndb.Model):
     url = ndb.StringProperty()
 
 
@@ -38,9 +38,14 @@ class AddClothingHandler(webapp2.RequestHandler):
         favoriteUrl.put()
 
 
+
 class WardrobePage(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/wardrobe_page.html")
+        values = {
+            "allWardrobe": AddClothing.query().fetch()
+        }
+        self.response.write(template.render(values))
 
 
 app = webapp2.WSGIApplication([
