@@ -28,7 +28,7 @@ class MainPage(webapp2.RequestHandler):
 
 class AddClothingHandler(webapp2.RequestHandler):
     def get(self):
-        response_html = jinja_env.get_template("Imgur-Upload-master/index.html")
+        response_html = jinja_env.get_template("templates/upload-images/index.html")
         self.response.headers['Content-Type'] = 'text/html'
         return self.response.write(response_html.render())
     def post(self):
