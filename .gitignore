@@ -1,4 +1,5 @@
-
+api.py
+api.js
 .DS_Store
-.DS_Store
-.DS_Store
+*.pyc
+*~
