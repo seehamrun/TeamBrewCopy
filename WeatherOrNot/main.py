@@ -27,6 +27,10 @@ class MainPage(webapp2.RequestHandler):
 #class AddItem(webapp2.RequestHandler):
 
 class AddClothingHandler(webapp2.RequestHandler):
+<<<<<<< HEAD
+=======
+
+>>>>>>> ede39b778a1ff8d9f7814f2ae512f0dcef6de985
     def get(self):
         response_html = jinja_env.get_template("Imgur-Upload-master/index.html")
         self.response.headers['Content-Type'] = 'text/html'
@@ -45,7 +49,11 @@ class WardrobePage(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
+<<<<<<< HEAD
 #    ('/add_favorite', AddClothingHandler),
+=======
+    ('/add_favorite', AddClothingHandler),
+>>>>>>> ede39b778a1ff8d9f7814f2ae512f0dcef6de985
     ('/', MainPage),
     ('/Wardrobe', WardrobePage),
     ('/AddItem', AddItem),
