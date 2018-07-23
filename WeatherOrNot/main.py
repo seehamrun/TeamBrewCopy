@@ -25,18 +25,16 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/main_page.html")
 
-
-#class AddItem(webapp2.RequestHandler):
-
 class AddClothingHandler(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/upload-images/index.html")
         self.response.headers['Content-Type'] = 'text/html'
         return self.response.write(response_html.render())
-
-
-        #result = int(number1) + int(number2)
-        #self.response.write(response_html % (result, number1, number2))
+        self.response.headers['Content-Type'] = 'text/html'
+        response_html = jinja_env.get_template('templates/calc.html')
+        length = self.request.get('length')
+        type=self.request.get('type')
+        material = self.request.get('materials')
     def post(self):
         requestUrl = self.request.get('url')
         requestType=self.request.get('type')
