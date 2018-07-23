@@ -8,7 +8,7 @@ from google.appengine.ext import ndb
 from google.appengine.api import urlfetch
 
 
-class AddClothing(ndb.Model):
+class WardrobeSave(ndb.Model):
     url = ndb.StringProperty()
 
 
@@ -28,13 +28,13 @@ class MainPage(webapp2.RequestHandler):
 
 class AddClothingHandler(webapp2.RequestHandler):
     def get(self):
-        response_html = jinja_env.get_template("Imgur-Upload-master/index.html")
+        response_html = jinja_env.get_template("templates/upload-images/index.html")
         self.response.headers['Content-Type'] = 'text/html'
         return self.response.write(response_html.render())
     def post(self):
         requestUrl = self.request.get('url')
         logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
-        favoriteUrl = AddClothing(url=requestUrl)
+        favoriteUrl = WardrobeSave(url=requestUrl)
         favoriteUrl.put()
 
 
@@ -43,7 +43,7 @@ class WardrobePage(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/wardrobe_page.html")
         values = {
-            "allWardrobe": AddClothing.query().fetch()
+            "allWardrobe": WardrobeSave.query().fetch()
         }
         self.response.write(template.render(values))
 
