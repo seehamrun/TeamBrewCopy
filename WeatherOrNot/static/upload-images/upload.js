@@ -26,17 +26,16 @@ new Imgur({
 // contacts our server, and asks it to add gifUrl to the list of favorite GIFs.
 // doneCallback should be a function, which addGifToFavorites will invoke when
 // the gifUrl is saved successfully.
-function addGifToFavorites(doneCallback) {
-  jQuery.post("/add_favorite", currentGifUrl, doneCallback);
+function addGifToFavorites(input_url, doneCallback) {
+  jQuery.post("/add_favorite", {url:input_url}, doneCallback);
 }
 
 // TODO: Create an event handler for when the button is clicked
 // that calls queryGiphy using the displayResult function as the callback
 
 function submitClick() {
-
   addGifToFavorites(currentGifUrl, () => {
-    alert("saved!")
+    alert("saved" + currentGifUrl)
 })
 
 }
