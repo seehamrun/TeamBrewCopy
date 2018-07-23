@@ -25,49 +25,16 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/main_page.html")
 
-
-#class AddItem(webapp2.RequestHandler):
-
 class AddClothingHandler(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/upload-images/index.html")
         self.response.headers['Content-Type'] = 'text/html'
         return self.response.write(response_html.render())
-<<<<<<< HEAD
         self.response.headers['Content-Type'] = 'text/html'
         response_html = jinja_env.get_template('templates/calc.html')
         length = self.request.get('length')
         type=self.request.get('type')
         material = self.request.get('materials')
-        # if type == 'dress':
-        #
-        # elif type=='skirt':
-        #
-        # elif type=='shirt':
-        #
-        # elif type=='pants':
-        #
-        # if length=='short':
-        #
-        # elif length=='long':
-        #
-        # elif length=='three_quarters':
-        #
-        # if material == 'Cotton':
-        #
-        # elif material=='Nylon':
-        #
-        # elif material=='Spandex':
-        #
-        # elif material=='Wool':
-        #
-        # elif material == 'Polyester':
-=======
-
->>>>>>> a06a81f51eb3a2073a314c919f07c829b0f3421e
-
-        #result = int(number1) + int(number2)
-        #self.response.write(response_html % (result, number1, number2))
     def post(self):
         requestUrl = self.request.get('url')
         requestType=self.request.get('type')
