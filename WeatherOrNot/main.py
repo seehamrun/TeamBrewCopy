@@ -18,14 +18,11 @@ jinja_env = jinja2.Environment(
     autoescape=True)
 
 
-<<<<<<< HEAD
 class MainPage(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/main_page.html")
 
 
-class AddItem(webapp2.RequestHandler):
-=======
 class AddClothingHandler(webapp2.RequestHandler):
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -59,7 +56,6 @@ app = webapp2.WSGIApplication([
     ('/AddItem', AddItem),
     ('/Suggestions', Suggestions),
     ('/Outfits', Outfits),
-=======
     ('/add_favorite', AddFavoriteHandler),
 >>>>>>> 67ebbd70bf1eb9ff35188413a038decbed6d92c8
 >>>>>>> cd0aa75d9d3333282de8ca6c5f8bef2f152c39da
