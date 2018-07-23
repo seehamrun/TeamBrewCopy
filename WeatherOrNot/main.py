@@ -35,30 +35,30 @@ class AddClothingHandler(webapp2.RequestHandler):
         length = self.request.get('length')
         type=self.request.get('type')
         material = self.request.get('materials')
-        if type == 'dress':
+        # if type == 'dress':
+        #
+        # elif type=='skirt':
+        #
+        # elif type=='shirt':
+        #
+        # elif type=='pants':
+        #
+        # if length=='short':
+        #
+        # elif length=='long':
+        #
+        # elif length=='three_quarters':
+        #
+        # if material == 'Cotton':
+        #
+        # elif material=='Nylon':
+        #
+        # elif material=='Spandex':
+        #
+        # elif material=='Wool':
+        #
+        # elif material == 'Polyester':
 
-        elif type=='skirt':
-
-        elif type=='shirt':
-
-        elif type=='pants':
-
-        if length=='short':
-
-        elif length=='long':
-
-        elif length=='three_quarters':
-
-        if material == 'Cotton':
-
-        elif material=='Nylon':
-
-        elif material=='Spandex':
-
-        elif material=='Wool':
-
-        elif material == 'Polyester':
-            
         #result = int(number1) + int(number2)
         #self.response.write(response_html % (result, number1, number2))
         values = {

@@ -7,3 +7,9 @@
     background-repeat:   no-repeat;
     background-size:     cover;
 }
+
+#header{
+  font-family: Luminari, fantasy;
+  color: blue;
+  font-size: 30pt;
+}

@@ -1,14 +1,23 @@
 <html>
 <head>
+  <link rel="stylesheet" href="/static/style.css"></link>
+
+  <title>Welcome!</title>
 </head>
-<body>
-  <p> Welcome to Weather or Not! </p>
+<body  background="https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/D8qa-2E/rainy-stormy-darkness-wet-weather-background-depressed-sad-background_bzxjr4x7h__F0000.png">
+  <p id="header"> Welcome to Weather or Not! </p>
 
-  <p><a href="/add_item">Click here to add a new item to your wardrobe!</a></p>
+  <form>
+    <input type="button" onclick="location.href='/wardrobe';" value="See Wardrobe!" />
+  </form>
 
-  <p><a href="/suggestion">Check out our Suggestions!</a></p>
+  <form>
+    <input type="button" onclick="location.href='/add_item';" value="Add new item to your wardrobe!" />
+  </form>
 
-  <p><a href="/wardrobe">See Wardrobe!</a></p>
+  <form>
+    <input type="button" onclick="location.href='/suggestion';" value="Check out our Suggestions!" />
+  </form>
 
 </body>
 </html>
