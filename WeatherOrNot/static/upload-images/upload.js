@@ -26,9 +26,9 @@ new Imgur({
 // the gifUrl is saved successfully.
 function addGifToFavorites(input_url, doneCallback) {
   var type = document.querySelector('#type').value;
-  var material= document.querySelector('#materials').value;
+  var materials= document.querySelector('#materials').value;
   var length =document.querySelector('#length').value;
-  jQuery.post("/add_item", {url:input_url, type, length, material}, doneCallback);
+  jQuery.post("/add_item", {url:input_url, type, length, materials}, doneCallback);
 }
 
 // TODO: Create an event handler for when the button is clicked
