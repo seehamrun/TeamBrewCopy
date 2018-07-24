@@ -2,14 +2,51 @@
   <head>
     <title>Wardrobe</title>
     <link rel="stylesheet" href="/static/style.css"></link>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
-  <body>
-    <form action="post">
-    {% for item in allWardrobe %}
+  <body class="body">
+    <h1>Wardrobe</h1>
+
+    <nav class="navbar navbar-inverse">
+    <ul class="nav navbar-nav">
+      <li><a href="/">Home!</a></li>
+      <li><a href="/wardrobe">See Wardrobe!</a></li>
+      <li><a href="/add_item">Add Item to Wardrobe</a></li>
+      <li><a href="/suggestion">Check out our Suggestions!</a></li>
+    </ul>
+    </nav>
+
     <div>
-        <input type="radio" name="Image"><img class="img" src= "{{item.url}}" /><br>
-      </div>
-    {% endfor %}
-      </form>
+      <p>Tops:</p>
+      {% for top in topsWardrobe %}
+        <img class = "img" src= "{{top.url}}" />
+      {% endfor %}
+      <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+    </div>
+    <p>Bottoms:</p>
+    <div>
+      {% for pant in bottomWardrobe %}
+        <img class = "img" src= "{{pant.url}}" />
+      {% endfor %}
+      <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+    </div>
+    <p>Skirts:</p>
+    <div>
+      {% for skirt in skirtWardrobe %}
+        <img class = "img" src= "{{skirt.url}}" />
+      {% endfor %}
+      <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+    </div>
+    <p>Dresses:</p>
+    <div>
+      {% for dress in dressWardrobe %}
+        <img class = "img" src= "{{dress.url}}" />
+      {% endfor %}
+      <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+    </div>
   </body>
 </html>
