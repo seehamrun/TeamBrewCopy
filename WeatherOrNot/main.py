@@ -45,7 +45,7 @@ class AddClothingHandler(webapp2.RequestHandler):
         requestLength=self.request.get('length')
         requestMaterial=self.request.get('materials')
         stored_clothing = WardrobeSave(type=requestType,
-            url=requestUrl, length=requestLength, materials=requestMaterial)
+            url=requestUrl, length=requestLength, materials=requestMaterial, laundry=False)
         stored_clothing.put()
         response_html = jinja_env.get_template('templates/upload-images/index.html')
         logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
@@ -55,10 +55,10 @@ class SuggestionsHandler(webapp2.RequestHandler):
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
 
         values={
-            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt").fetch(),
-            "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants").fetch(),
-            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt").fetch(),
-            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress").fetch(),
+            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
+            "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False).fetch(),
+            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False).fetch(),
+            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch(),
         }
         self.response.write(response_html.render(values))
 
@@ -67,10 +67,10 @@ class WardrobePage(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/wardrobe_page.html")
         values = {
-            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt").fetch(),
-            "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants").fetch(),
-            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt").fetch(),
-            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress").fetch(),
+            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
+            "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False).fetch(),
+            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False).fetch(),
+            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch(),
         }
         self.response.write(response_html.render(values))
 
