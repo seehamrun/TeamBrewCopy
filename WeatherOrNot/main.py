@@ -12,6 +12,7 @@ class WardrobeSave(ndb.Model):
     type=ndb.StringProperty()
     materials=ndb.StringProperty()
     length=ndb.StringProperty()
+    laundry=ndb.BooleanProperty()
 
 
 jinja_env = jinja2.Environment(
@@ -23,6 +24,10 @@ jinja_env = jinja2.Environment(
 class MainPage(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/main_page.html")
+
+    def post(self):
+        userTemp = self.request.get("temp")
+        logging.info(userTemp)
 
 class AddClothingHandler(webapp2.RequestHandler):
     def get(self):
@@ -49,7 +54,11 @@ class SuggestionsHandler(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
         values={
-            "weatherWardrobe":WardrobeSave.query().fetch()
+            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="top").fetch(),
+            "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants").fetch(),
+            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt").fetch(),
+            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress").fetch(),
+
         }
         self.response.write(response_html.render(values))
 
@@ -63,9 +72,16 @@ class WardrobePage(webapp2.RequestHandler):
         self.response.write(response_html.render(values))
 
 
+class Tester(webapp2.RequestHandler):
+    def get(self):
+        response_html = jinja_env.get_template("templates/weather-test.html")
+        self.response.write(response_html.render())
+
+
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/wardrobe', WardrobePage),
     ('/add_item', AddClothingHandler),
-    ('/suggestion', SuggestionsHandler)
+    ('/suggestion', SuggestionsHandler),
+    ("/testing", Tester)
 ], debug=True)

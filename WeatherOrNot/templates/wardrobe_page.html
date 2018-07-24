@@ -6,16 +6,32 @@
   <body class="body">
     <div>
       <p>Shirts:</p>
-      {% for item in shirts %}
+      {% for item in topsWardrobe %}
         <img class = "img" src= "{{item.url}}" />
       {% endfor %}
     </div>
     <p>Bottoms:</p>
     <div>
-      {% for item in bottoms %}
+      {% for item in bottomWardrobe %}
+        <img class = "img" src= "{{item.url}}" />
+      {% endfor %}
+    </div>
+    <p>Skirts:</p>
+    <div>
+      {% for item in skirtWardrobe %}
+        <img class = "img" src= "{{item.url}}" />
+      {% endfor %}
+    </div>
+    <p>Dresses:</p>
+    <div>
+      {% for item in dressWardrobe %}
         <img class = "img" src= "{{item.url}}" />
       {% endfor %}
     </div>
 
+        <input type="radio" name="Image"><img class="img" src= "{{item.url}}" /><br>
+      </div>
+    {% endfor %}
+      </form>
   </body>
 </html>
