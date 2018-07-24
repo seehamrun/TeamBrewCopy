@@ -50,8 +50,9 @@ class AddClothingHandler(webapp2.RequestHandler):
 class SuggestionsHandler(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
+
         values={
-            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="top").fetch(),
+            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt").fetch(),
             "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants").fetch(),
             "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt").fetch(),
             "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress").fetch(),
