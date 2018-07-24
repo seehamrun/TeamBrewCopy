@@ -55,17 +55,23 @@ class SuggestionsHandler(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
         weather_response_html = jinja_env.get_template("templates/weather-test.html")
+
         temp = self.request.get("temp")
         weather = self.request.get("condition")
-        logging.info("The weather is: " + weather)
+        maxTemp=self.request.get("maxtemp")
+        minTemp=self.request.get("mintemp")
+
         length_cloth=WardrobeSave.length=="length"
+        material_cloth = WardrobeSave.materials=="cotton"
         if (weather=="sunny"):
             length_cloth=WardrobeSave.length=="short"
+        if (temp>50):
+            material_cloth=WardrobeSave.length=="wool"
         values={
-            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
-            "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False).fetch(),
-            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False).fetch(),
-            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch(),
+            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, length_cloth, material_cloth).fetch(),
+            "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, length_cloth, material_cloth).fetch(),
+            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False, length_cloth, material_cloth).fetch(),
+            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False, length_cloth, material_cloth).fetch(),
         }
         self.response.write(weather_response_html.render())
         self.response.write(response_html.render(values))
