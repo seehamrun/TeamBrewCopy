@@ -1,5 +1,6 @@
 <html>
   <head>
+    <link rel="stylesheet" href="/static/style.css"></link>
     <title>Our Suggestions</title>
     <link rel="stylesheet" href="/static/style.css"></link>
     <script src="/static/api.js"></script>
@@ -27,18 +28,22 @@
     {% for shirt in topsWardrobe %}
       <img class = "img" src= "{{shirt.url}}" />
     {% endfor %}
+    <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
     <h1>BOTTOMS</h1>
     {% for pant in bottomWardrobe%}
       <img class="img" src= "{{pant.url}}" />
     {% endfor %}
+    <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
     <h1>SKIRT</h1>
     {% for skirt in skirtWardrobe%}
       <img class="img" src= "{{skirt.url}}" />
     {% endfor %}
+    <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
     <h1>DRESSSES</h1>
     {% for dress in dressWardrobe%}
       <img class="img" src= "{{dress.url}}" />
     {% endfor %}
+<<<<<<< HEAD
   </body>
 <head>
   <title>Our Suggestions</title>
@@ -80,5 +85,7 @@
   {% for dress in dressWardrobe%}
     <img class="img" src= "{{dress.url}}" />
   {% endfor %}
+=======
+>>>>>>> 9060e306b4d5530c33180801c97e89e7de9cab4b
 </body>
 </html>
