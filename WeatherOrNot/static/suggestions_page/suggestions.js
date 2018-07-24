@@ -10,8 +10,8 @@ fetch("https://api.worldweatheronline.com/premium/v1/weather.ashx?key=" + weathe
       condition.innerHTML = "<p>" + currentCondition + "</p>"
       pic.innerHTML = "<img src='" + data.data.current_condition[0].weatherIconUrl[0].value + "'/>"
 
-      jQuery.get("/?temp=" + currentTemp + "&condition=" + currentCondition, () => {
-        //alert("Sent")
+      jQuery.get("/suggestion?temp=" + currentTemp + "&condition=" + currentCondition, () => {
+        alert("Sent")
       })
 
     });
