@@ -4,9 +4,13 @@
     <link rel="stylesheet" href="/static/style.css"></link>
   </head>
   <body>
-    <form action="">
+    <form action="post">
     {% for item in allWardrobe %}
-        <img class="img" src= "{{item.url}}" /><input type="checkbox" name="Image"+{{item.url}}><br>
+    <div>
+        <input type="radio" name="Image"><img class="img" src= "{{item.url}}" /><br>
+        <input type="radio" name="Image"><img class="img" src= "{{item.url}}" /><br>
+        <input type="radio" name="Image"><img class="img" src= "{{item.url}}" /><br>
+      </div>
     {% endfor %}
       </form>
   </body>
