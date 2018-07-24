@@ -1,5 +1,6 @@
 <html>
   <head>
+    <script src="/static/wardrobe_slideshow.js"></script>
     <title>Wardrobe</title>
     <link rel="stylesheet" href="/static/style.css"></link>
     <meta charset="utf-8">
@@ -20,13 +21,14 @@
     </ul>
     </nav>
 
-    <div>
+    <div id="image_wrap">
       <p>Tops:</p>
       {% for top in topsWardrobe %}
-        <img class = "img" src= "{{top.url}}" />
+        <img class = "img" src = "{{top.url}}" width="500" height="375" />
       {% endfor %}
       <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
     </div>
+
     <p>Bottoms:</p>
     <div>
       {% for pant in bottomWardrobe %}
