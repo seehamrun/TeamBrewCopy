@@ -1,0 +1,11 @@
+<html>
+<head>
+  <title>Our Suggestions</title>
+</head>
+<body>
+  <img class = "img" src = "https://i.imgur.com/0ef6GzK.jpg"/>
+  {% for item in weatherWardrobe%}
+    <img class="img" src= "{{item.url}}" />
+  {% endfor %}
+</body>
+</html>

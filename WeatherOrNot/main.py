@@ -46,6 +46,13 @@ class AddClothingHandler(webapp2.RequestHandler):
         response_html = jinja_env.get_template('templates/upload-images/index.html')
         logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
 
+class SuggestionsHandler(webapp2.RequestHandler):
+    def get(self):
+        response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
+        values={
+            "weatherWardrobe":WardrobeSave.query().fetch()
+        }
+        self.response.write(response_html.render(values))
 
 
 class WardrobePage(webapp2.RequestHandler):
@@ -60,5 +67,6 @@ class WardrobePage(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/wardrobe', WardrobePage),
-    ('/add_item', AddClothingHandler)
+    ('/add_item', AddClothingHandler),
+    ('/suggestion', SuggestionsHandler)
 ], debug=True)
