@@ -62,17 +62,10 @@ class SuggestionsHandler(webapp2.RequestHandler):
         if (weather=="sunny"):
             length_cloth=WardrobeSave.length=="short"
         values={
-<<<<<<< HEAD
-            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", length_cloth).fetch(),
-            "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", length_cloth).fetch(),
-            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", length_cloth).fetch(),
-            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", length_cloth).fetch(),
-=======
             "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
             "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False).fetch(),
             "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False).fetch(),
             "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch(),
->>>>>>> 4268b0effcff096149edcacff2db3d5558bc2178
         }
         self.response.write(weather_response_html.render())
         self.response.write(response_html.render(values))
