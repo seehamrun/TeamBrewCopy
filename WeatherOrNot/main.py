@@ -24,6 +24,10 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/main_page.html")
 
+    def post(self):
+        userTemp = self.request.get("temp")
+        logging.info(userTemp)
+
 class AddClothingHandler(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/upload-images/index.html")
@@ -63,9 +67,16 @@ class WardrobePage(webapp2.RequestHandler):
         self.response.write(response_html.render(values))
 
 
+class Tester(webapp2.RequestHandler):
+    def get(self):
+        response_html = jinja_env.get_template("templates/weather-test.html")
+        self.response.write(response_html.render())
+
+
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/wardrobe', WardrobePage),
     ('/add_item', AddClothingHandler),
-    ('/suggestion', SuggestionsHandler)
+    ('/suggestion', SuggestionsHandler),
+    ("/testing", Tester)
 ], debug=True)
