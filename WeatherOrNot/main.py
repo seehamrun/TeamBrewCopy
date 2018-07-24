@@ -12,6 +12,7 @@ class WardrobeSave(ndb.Model):
     type=ndb.StringProperty()
     materials=ndb.StringProperty()
     length=ndb.StringProperty()
+    laundry=ndb.BooleanProperty()
 
 
 jinja_env = jinja2.Environment(
@@ -50,7 +51,11 @@ class SuggestionsHandler(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
         values={
-            "weatherWardrobe":WardrobeSave.query().fetch()
+            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="top").fetch(),
+            "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants").fetch(),
+            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt").fetch(),
+            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress").fetch(),
+
         }
         self.response.write(response_html.render(values))
 

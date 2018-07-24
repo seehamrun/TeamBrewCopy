@@ -1,0 +1,151 @@
+body{
+  padding-top: 0;
+  max-width: 1200px;
+  margin: auto;
+  background-color: #5F7EA2;
+  #688EBB;
+}
+
+#topBar{
+  padding: 0;
+  margin-top:  0;
+  background-color: #5F7EA2;
+  height: 44px;
+}
+
+h1{
+  font-family: "SF Pro Text","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+  font-size: 17px;
+  line-height: 1.47059;
+  font-weight: 400;
+  letter-spacing: -.022em;
+  text-align: center;
+  padding-top: 13.5px;
+}
+
+.mainDivision{
+  display: grid;
+  grid-template-columns: 46% 54%;
+  height: 725px;
+  width: 1200px;
+  position: static;
+}
+
+h2{
+  font-family: "SF Pro Text","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+  font-size: 17px;
+  line-height: 1.47059;
+  font-weight: 400;
+  letter-spacing: -.022em;
+  text-align: center;
+  padding-top: 13.5px;
+}
+.showcasePhotos{
+  border: 1px solid black;
+  display: block;
+  border-radius: 8px;
+  background-color: #83A1BF;
+
+}
+
+#image1 {
+  width: 300px;
+  height: 300px;
+  background-color: #b6cadc;
+  margin-left: auto;
+  margin-right: auto;
+  border-color: 1px dotted black;
+}
+#image2 {
+  width: 300px;
+  height: 300px;
+  background-color: #b6cadc;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  border-color: 1px dotted black;
+  margin-top: 5px;
+
+}
+
+.weatherAndMenu{
+  border: 1px solid black;
+  display: grid;
+  grid-gap: 10px;
+  border-radius: 8px;
+  grid-template-rows: 200px 475px; /* will equal 25 on top and 25 on bottom and 675 for everything else 10px grid gap */
+
+}
+.menuOptions{
+  background-color: orange;
+  padding-top: 5px;
+}
+
+#menu{
+  margin: 0;
+  padding: 0;
+
+}
+
+#menu li{
+  list-style: none;
+  display: inline-block;
+}
+
+#menu li a{
+  text-decoration: none;
+  position: relative;
+  color: #313131;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: sans-serif;
+  display: block;
+  overflow: hidden;
+  transition: 0.7s all;
+  padding: 14px 10px;
+  text-transform: uppercase;
+}
+
+#menu li a:before{
+  content:'';
+  width:60px;
+  position: absolute;
+  border-bottom: 8px solid;
+  bottom: 0;
+  right: 350px;
+  transition: 0.7s all;
+
+}
+
+#menu li a:hover:before{
+  right: 0;
+}
+
+
+
+.weatherAPI {
+    position: relative;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+}
+
+#weatherDisplay {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    border-radius: 8px;
+    width: 98%;
+    height: 200px;
+    padding-top: 0;
+    opacity: 0.3;
+
+
+
+}
