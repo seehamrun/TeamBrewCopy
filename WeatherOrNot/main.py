@@ -54,7 +54,11 @@ class SuggestionsHandler(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
         values={
-            "weatherWardrobe":WardrobeSave.query().fetch()
+            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="top").fetch(),
+            "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants").fetch(),
+            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt").fetch(),
+            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress").fetch(),
+
         }
         self.response.write(response_html.render(values))
 
@@ -63,7 +67,7 @@ class WardrobePage(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/wardrobe_page.html")
         values = {
-            "allWardrobe": WardrobeSave.query(WardrobeSave.type=="shirt").fetch()
+            "allWardrobe": WardrobeSave.query().fetch()
         }
         self.response.write(response_html.render(values))
 
