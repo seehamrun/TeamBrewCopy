@@ -4,9 +4,14 @@
     <link rel="stylesheet" href="/static/style.css"></link>
   </head>
   <body>
-    <
+    <form action="post">
     {% for item in allWardrobe %}
-      <img class="img" src= "{{item.url}}" />
+    <div>
+        <input type="radio" name="Image"><img class="img" src= "{{item.url}}" /><br>
+        <input type="radio" name="Image"><img class="img" src= "{{item.url}}" /><br>
+        <input type="radio" name="Image"><img class="img" src= "{{item.url}}" /><br>
+      </div>
     {% endfor %}
+      </form>
   </body>
 </html>
