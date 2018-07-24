@@ -1,3 +1,5 @@
+currentTemp = ""
+
 fetch("https://api.worldweatheronline.com/premium/v1/weather.ashx?key=" + weather_key + "&q=60607&format=json&num_of_days=1")
   .then(function(response) {
     response.json().then(function(data) {
@@ -6,9 +8,10 @@ fetch("https://api.worldweatheronline.com/premium/v1/weather.ashx?key=" + weathe
       temp.innerHTML = "<h1>The current weather is " + currentTemp + "F</h1>"
       condition.innerHTML = "<p>" + data.data.current_condition[0].weatherDesc[0].value + "</p>"
       pic.innerHTML = "<img src='" + data.data.current_condition[0].weatherIconUrl[0].value + "'/>"
+
+      jQuery.get("/testing?temp=" + currentTemp, () => {
+        alert("Saved")
+      })
+
     });
   })
-
-jQuery.post("/", {temp: currentTemp}, () => {
-  alert("Saved")
-})
