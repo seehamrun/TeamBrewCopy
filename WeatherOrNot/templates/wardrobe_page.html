@@ -3,15 +3,19 @@
     <title>Wardrobe</title>
     <link rel="stylesheet" href="/static/style.css"></link>
   </head>
-  <body>
-    <form action="post">
-    {% for item in allWardrobe %}
+  <body class="body">
     <div>
-        <input type="radio" name="Image"><img class="img" src= "{{item.url}}" /><br>
-        <input type="radio" name="Image"><img class="img" src= "{{item.url}}" /><br>
-        <input type="radio" name="Image"><img class="img" src= "{{item.url}}" /><br>
-      </div>
-    {% endfor %}
-      </form>
+      <p>Shirts:</p>
+      {% for item in shirts %}
+        <img class = "img" src= "{{item.url}}" />
+      {% endfor %}
+    </div>
+    <p>Bottoms:</p>
+    <div>
+      {% for item in bottoms %}
+        <img class = "img" src= "{{item.url}}" />
+      {% endfor %}
+    </div>
+
   </body>
 </html>
