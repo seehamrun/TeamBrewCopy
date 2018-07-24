@@ -9,7 +9,7 @@ fetch("https://api.worldweatheronline.com/premium/v1/weather.ashx?key=" + weathe
       condition.innerHTML = "<p>" + data.data.current_condition[0].weatherDesc[0].value + "</p>"
       pic.innerHTML = "<img src='" + data.data.current_condition[0].weatherIconUrl[0].value + "'/>"
 
-      jQuery.get("/testing?temp=" + currentTemp, () => {
+      jQuery.get("/?temp=" + currentTemp, () => {
         //alert("Sent")
       })
 
