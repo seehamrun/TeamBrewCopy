@@ -12,6 +12,7 @@ class WardrobeSave(ndb.Model):
     type=ndb.StringProperty()
     materials=ndb.StringProperty()
     length=ndb.StringProperty()
+    laundry=ndb.BooleanProperty()
 
 
 jinja_env = jinja2.Environment(
@@ -62,7 +63,7 @@ class WardrobePage(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/wardrobe_page.html")
         values = {
-            "allWardrobe": WardrobeSave.query().fetch()
+            "allWardrobe": WardrobeSave.query(WardrobeSave.type=="shirt").fetch()
         }
         self.response.write(response_html.render(values))
 
