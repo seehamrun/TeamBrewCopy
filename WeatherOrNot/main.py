@@ -25,6 +25,9 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/main_page.html")
 
+        temp = self.request.get("temp")
+        weather(temp)
+
 
 class AddClothingHandler(webapp2.RequestHandler):
     def get(self):
@@ -74,15 +77,16 @@ class WardrobePage(webapp2.RequestHandler):
 
 class TesterHandler(webapp2.RequestHandler):
     def get(self):
+
         response_html = jinja_env.get_template("templates/weather-test.html")
         self.response.write(response_html.render())
-
-        userTemp = self.request.get("temp")
-        logging.info("This is user temp")
-        logging.info(userTemp)
-        print(userTemp)
+        temp = self.request.get("temp")
+        weather(temp)
 
 
+def weather(temp):
+    logging.info("This is temp")
+    logging.info(temp)
 
 
 app = webapp2.WSGIApplication([
