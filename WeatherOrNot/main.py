@@ -255,9 +255,7 @@ class CalendarHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         logging.info('current user is: %s' % (user.nickname()))
-        response_html = jinja_env.get_template("templates/main_page.html")
-
-        response_html = jinja_env.get_template("templates/addfavs_page.html")
+        response_html = jinja_env.get_template("templates/calendar.html")
         values = {
             'user_nickname': user.nickname(),
             'logoutUrl': users.create_logout_url('/'),
