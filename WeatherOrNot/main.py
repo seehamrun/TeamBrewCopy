@@ -232,21 +232,33 @@ class FavoritesHandler(webapp2.RequestHandler):
 
         if(top!="" and bottom!=""):
             stored_clothing = FavoriteSave(topUrl=top, bottomUrl=bottom)
+            stored_clothing1 = CalendarSave(urltop=top, urlbottom=bottom)
+            stored_clothing1.put()
             stored_clothing.put()
         elif(top!="" and skirt!=""):
             stored_clothing = FavoriteSave(topUrl=top, bottomUrl=skirt)
+            stored_clothing1 = CalendarSave(urltop=top, urlbottom=skirt)
+            stored_clothing1.put()
             stored_clothing.put()
         elif(sweater!="" and bottom!=""):
             stored_clothing = FavoriteSave(topUrl=sweater, bottomUrl=bottom)
+            stored_clothing1 = CalendarSave(urltop=sweater, urlbottom=bottom)
+            stored_clothing1.put()
             stored_clothing.put()
         elif(sweater!="" and skirt!=""):
             stored_clothing = FavoriteSave(topUrl=sweater, bottomUrl=skirt)
+            stored_clothing1 = CalendarSave(urltop=sweater, urlbottom=skirt)
+            stored_clothing1.put()
             stored_clothing.put()
         elif(coat!="" and bottom!=""):
             stored_clothing = FavoriteSave(topUrl=coat, bottomUrl=bottom)
+            stored_clothing1 = CalendarSave(urltop=coat, urlbottom=bottom)
+            stored_clothing1.put()
             stored_clothing.put()
         elif(jacket!="" and bottom!=""):
             stored_clothing = FavoriteSave(topUrl=jacket, bottomUrl=bottom)
+            stored_clothing1 = CalendarSave(urltop=jacket, urlbottom=bottom)
+            stored_clothing1.put()
             stored_clothing.put()
         else:
             response = """
