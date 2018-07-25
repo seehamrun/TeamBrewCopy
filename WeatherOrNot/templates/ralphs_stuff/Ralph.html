@@ -1,8 +1,14 @@
 <html>
   <head>
-    <meta charset="utf-8">
+    <link rel="stylesheet" href="Ralph.css"></link>
+    <script src="../static/api.js"></script>
+    <script src = "../static/main_page.js"></script>
     <title> Weather or Not </title>
-    <link rel="stylesheet" href="Ralph.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 
   <body>
@@ -19,17 +25,30 @@
     </div>
 
     <div class='officialMenu'>
+      <h1>Logo</h1>
       <ul id='menu'>
         <ul>
-          <center>
-          <li><a href="#">Suggestions</a></li>
-          <li><a href="#">Wardrobe</a></li>
-          <li><a href="#">Saved</a></li>
-          <li><a href="#">Laundry</a></li>
-        </center>
+            <li><a href="/">Home</a></li>
+            <li><a href="/suggestion">Suggestions</a></li>
+            <li><a href="/wardrobe">Wardrobe</a></li>
+            <li><a href="/add_item">Add Items to Wardrobe</a></li>
+            <li><a href="#">Laundry</a></li>
         </ul>
       </ul>
     </div>
+
+    <div class="centeredImageofHome">
+      <div class='hereIsTheImage'>
+        <img src="https://wallpapercave.com/wp/wp1866272.jpg" id='clothesHangerDisplay'>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC" id="whiteBox">
+        <div class='center'> Wardrobe Season </div>
+        <p class='Click'>Click to begin</p>
+        <!-- ENTER ZIP CODE -->
+      </div>
+    </div>
+
+    <div><h1></h1></div>
   </body>
+  <!-- menu -->
 
 </html>
