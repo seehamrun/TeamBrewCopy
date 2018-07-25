@@ -3,9 +3,7 @@ import logging
 import jinja2
 import os
 import json
-
 import time
-
 from google.appengine.api import users
 from google.appengine.ext import ndb
 from google.appengine.api import urlfetch
@@ -31,17 +29,14 @@ class WardrobeSave(ndb.Model):
     laundry=ndb.BooleanProperty()
     user = ndb.StringProperty()
 
-
 class FavoriteSave(ndb.Model):
     topUrl = ndb.StringProperty()
     bottomUrl = ndb.StringProperty()
-
 
 jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
-
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
@@ -67,7 +62,6 @@ class MainPage(webapp2.RequestHandler):
         time.sleep(1)
         #logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
         self.redirect('/')
-
 
 class AddClothingHandler(webapp2.RequestHandler):
     def get(self):
@@ -112,37 +106,35 @@ class WardrobePage(webapp2.RequestHandler):
             "laundry":WardrobeSave.query(WardrobeSave.laundry==True, WardrobeSave.user==user.nickname()).fetch(),
         }
         self.response.write(response_html.render(values))
+    def post(self):
+        button = None
+        itemKeys = []
+        logging.info(self.request.POST)
+        for keys in self.request.POST.keys():
+            if keys == "toWardrobe" or keys=="deleteClothing" or keys=="toLaundry":
+                button = keys
+            else:
+                itemKeys.append(keys)
+
+        for itemKey in itemKeys:
+            DBKey = ndb.Key(urlsafe=itemKey)
+            TheItem = DBKey.get()
+            if button == "toWardrobe":
+                TheItem.laundry = False
+                TheItem.put()
+            elif button=="deleteClothing":
+                DBKey.delete()
+            else:
+                TheItem.laundry = True
+                TheItem.put()
+        time.sleep(1)
+        self.redirect("/wardrobe")
 
 class SuggestionsHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        logging.info('current user is: %s' % (user.nickname()))
-        response_html = jinja_env.get_template("templates/main_page.html")
-
-        response_html = jinja_env.get_template("templates/addfavs_page.html")
-        values = {
-            'user_nickname': user.nickname(),
-            'logoutUrl': users.create_logout_url('/'),
-            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-            "pantsWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-            "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-            "coatWardrobe":WardrobeSave.query(WardrobeSave.type=="coat", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-            "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
-        }
-        self.response.write(response_html.render(values))
-
-
-class ListFavoritesHandler(webapp2.RequestHandler):
-    def get(self):
-        response_html = jinja_env.get_template("templates/listfavs_page.html")
-        values = {
-            "favorites":FavoriteSave.query().fetch(),
-        }
-        self.response.write(response_html.render(values))
-
-
+        logging.info('current user is: %s' %(user.nickname()))
+        response_html=jinja_env.get_template("templates/main_page.html")
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
         self.response.write(response_html.render())
 
@@ -158,17 +150,6 @@ class GetWeather(webapp2.RequestHandler):
         logging.info("It went through")
 
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
-
-
-        length_cloth=WardrobeSave.length=="length"
-        material_cloth = WardrobeSave.materials=="cotton"
-        if (weather=="sunny"):
-            length_cloth=WardrobeSave.length=="short"
-        if (temp>50):
-            material_cloth=WardrobeSave.length=="wool"
-        values={
-            "topsWardrobe":WardrobeSave.query().fetch()
-        }
         if (temp<35):
             values={
                 'user_nickname': user.nickname(),
@@ -178,7 +159,7 @@ class GetWeather(webapp2.RequestHandler):
                 "coatWardrobe":WardrobeSave.query(WardrobeSave.type=="coat", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
                 "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
             }
-        elif(temp>35 and temp<=50):
+        elif(temp<=50):
             values={
                 'user_nickname': user.nickname(),
                 'logoutUrl': users.create_logout_url('/'),
@@ -187,7 +168,7 @@ class GetWeather(webapp2.RequestHandler):
                 "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
                 "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
             }
-        elif(temp>50 and temp<=60):
+        elif(temp<=60):
             values={
                 'user_nickname': user.nickname(),
                 'logoutUrl': users.create_logout_url('/'),
@@ -195,7 +176,7 @@ class GetWeather(webapp2.RequestHandler):
                 "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long", WardrobeSave.user==user.nickname()).fetch(),
                 "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
             }
-        elif(temp>60 and temp<=70):
+        elif(temp<=70):
             values={
                 'user_nickname': user.nickname(),
                 'logoutUrl': users.create_logout_url('/'),
@@ -213,27 +194,6 @@ class GetWeather(webapp2.RequestHandler):
             }
 
         return self.response.write(response_html.render(values))
-
-    def post(self):
-        button = None
-        itemKeys = []
-        logging.info(self.request.POST)
-        for keys in self.request.POST.keys():
-            if keys == "toWardrobe":
-                button = keys
-            else:
-                itemKeys.append(keys)
-
-        for itemKey in itemKeys:
-            DBKey = ndb.Key(urlsafe=itemKey)
-            TheItem = DBKey.get()
-            if button == "toWardrobe":
-                TheItem.laundry = False
-            else:
-                TheItem.laundry = True
-            TheItem.put()
-        time.sleep(1)
-        self.redirect("/wardrobe")
 
 class FavoritesHandler(webapp2.RequestHandler):
     def get(self):
@@ -267,21 +227,33 @@ class FavoritesHandler(webapp2.RequestHandler):
 
         if(top!="" and bottom!=""):
             stored_clothing = FavoriteSave(topUrl=top, bottomUrl=bottom)
+            stored_clothing1 = CalendarSave(urltop=top, urlbottom=bottom)
+            stored_clothing1.put()
             stored_clothing.put()
         elif(top!="" and skirt!=""):
             stored_clothing = FavoriteSave(topUrl=top, bottomUrl=skirt)
+            stored_clothing1 = CalendarSave(urltop=top, urlbottom=skirt)
+            stored_clothing1.put()
             stored_clothing.put()
         elif(sweater!="" and bottom!=""):
             stored_clothing = FavoriteSave(topUrl=sweater, bottomUrl=bottom)
+            stored_clothing1 = CalendarSave(urltop=sweater, urlbottom=bottom)
+            stored_clothing1.put()
             stored_clothing.put()
         elif(sweater!="" and skirt!=""):
             stored_clothing = FavoriteSave(topUrl=sweater, bottomUrl=skirt)
+            stored_clothing1 = CalendarSave(urltop=sweater, urlbottom=skirt)
+            stored_clothing1.put()
             stored_clothing.put()
         elif(coat!="" and bottom!=""):
             stored_clothing = FavoriteSave(topUrl=coat, bottomUrl=bottom)
+            stored_clothing1 = CalendarSave(urltop=coat, urlbottom=bottom)
+            stored_clothing1.put()
             stored_clothing.put()
         elif(jacket!="" and bottom!=""):
             stored_clothing = FavoriteSave(topUrl=jacket, bottomUrl=bottom)
+            stored_clothing1 = CalendarSave(urltop=jacket, urlbottom=bottom)
+            stored_clothing1.put()
             stored_clothing.put()
         else:
             response = """
@@ -289,8 +261,8 @@ class FavoritesHandler(webapp2.RequestHandler):
                 <head>
                     <link rel="stylesheet" href="/static/style.css"></link>
                 </head>
-                <body>
-                    <p>This does not work</p>
+                <body class = "img" background="https://emojipedia-us.s3.amazonaws.com/socialmedia/apple/129/crying-face_1f622.png">
+                    <h1 id="head">This outfit combination does not work</h1>
                 </body>
             </html>"""
             return self.response.write(response)
@@ -298,7 +270,6 @@ class FavoritesHandler(webapp2.RequestHandler):
         time.sleep(1)
         #logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
         self.redirect('/add_favorite')
-
 
 class ListFavoritesHandler(webapp2.RequestHandler):
     def get(self):
@@ -316,12 +287,6 @@ class CalendarHandler(webapp2.RequestHandler):
         }
         self.response.write(response_html.render(values))
 
-
-def weather(temp):
-    logging.info("This is temp")
-    logging.info(temp)
-
-
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/wardrobe', WardrobePage),
@@ -330,5 +295,6 @@ app = webapp2.WSGIApplication([
     ('/add_favorite', FavoritesHandler),
     ('/get_weather', GetWeather),
     ('/calendar', CalendarHandler),
+    ('/delete_wardrobe', DeleteWardrobeHandler),
     ('/list_favorite', ListFavoritesHandler)
 ], debug=True)
