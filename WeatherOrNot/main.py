@@ -3,9 +3,12 @@ import logging
 import jinja2
 import os
 import json
+import api
 
+from google.appengine.api import users
 from google.appengine.ext import ndb
 from google.appengine.api import urlfetch
+
 
 class WardrobeSave(ndb.Model):
     url = ndb.StringProperty()
@@ -23,10 +26,18 @@ jinja_env = jinja2.Environment(
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        logging.info('current user is: %s' % (user.nickname()))
         response_html = jinja_env.get_template("templates/main_page.html")
 
         temp = self.request.get("temp")
         weather(temp)
+
+        data = {
+          'user_nickname': user.nickname(),
+          'logoutUrl': users.create_logout_url('/')
+        }
+        return self.response.write(response_html.render(data))
 
 
 class AddClothingHandler(webapp2.RequestHandler):
@@ -39,6 +50,7 @@ class AddClothingHandler(webapp2.RequestHandler):
         length = self.request.get('length')
         type=self.request.get('type')
         material = self.request.get('materials')
+
     def post(self):
         requestUrl = self.request.get('url')
         requestType=self.request.get('type')
@@ -78,7 +90,7 @@ class GetWeather(webapp2.RequestHandler):
         logging.info("It went through")
 
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
-        
+
         length_cloth=WardrobeSave.length=="length"
         material_cloth = WardrobeSave.materials=="cotton"
         if (weather=="sunny"):

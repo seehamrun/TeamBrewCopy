@@ -3,17 +3,18 @@ api_version: 1
 threadsafe: true
 
 handlers:
-- url: /
-  static_files: templates/main_page.html
-  upload: templates/main_page.html
 - url: /static/upload-images.*
   static_dir: static/upload-images
+  login: required
 - url: /static/suggestions_page.*
   static_dir: static/suggestions_page
+  login: required
 - url: /static.*
   static_dir: static
+  login: required
 - url: /.*
   script: main.app
+  login: required
 
 libraries:
 - name: jinja2
