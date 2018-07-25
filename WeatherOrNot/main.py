@@ -14,12 +14,18 @@ class ZipSave(ndb.Model):
     nick=ndb.StringProperty()
     zip=ndb.StringProperty()
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 1db400a210a38afbe03d554fb58c84af97be01e1
 class WardrobeSave(ndb.Model):
     url = ndb.StringProperty()
     type=ndb.StringProperty()
     materials=ndb.StringProperty()
     length=ndb.StringProperty()
     laundry=ndb.BooleanProperty()
+    user = ndb.StringProperty()
+
 
 class FavoriteSave(ndb.Model):
     topUrl = ndb.StringProperty()
@@ -62,24 +68,24 @@ class AddClothingHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         logging.info('current user is: %s' % (user.nickname()))
-        response_html = jinja_env.get_template("templates/main_page.html")
-
+        self.response.headers['Content-Type'] = 'text/html'
         response_html = jinja_env.get_template("templates/upload-images/index.html")
-        self.response.headers['Content-Type'] = 'text/html'
+
         return self.response.write(response_html.render())
-        self.response.headers['Content-Type'] = 'text/html'
-        response_html = jinja_env.get_template('templates/calc.html')
         length = self.request.get('length')
         type=self.request.get('type')
         material = self.request.get('materials')
 
     def post(self):
+        user = users.get_current_user()
         requestUrl = self.request.get('url')
         requestType=self.request.get('type')
         requestLength=self.request.get('length')
         requestMaterial=self.request.get('materials')
+        logging.info('current user is: %s' % (user.nickname()))
+        requestUser = user.nickname()
         stored_clothing = WardrobeSave(type=requestType,
-            url=requestUrl, length=requestLength, materials=requestMaterial, laundry=False)
+            url=requestUrl, length=requestLength, materials=requestMaterial, laundry=False, user=requestUser)
         stored_clothing.put()
         response_html = jinja_env.get_template('templates/upload-images/index.html')
         logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
@@ -91,12 +97,7 @@ class SuggestionsHandler(webapp2.RequestHandler):
         response_html = jinja_env.get_template("templates/main_page.html")
 
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
-        values={
-        'user_nickname': user.nickname(),
-        'logoutUrl': users.create_logout_url('/'),
-        "topsWardrobe":WardrobeSave.query().fetch()
-        }
-        self.response.write(response_html.render(values))
+        self.response.write(response_html.render())
 
 
 class WardrobePage(webapp2.RequestHandler):
@@ -109,11 +110,18 @@ class WardrobePage(webapp2.RequestHandler):
         values = {
             'user_nickname': user.nickname(),
             'logoutUrl': users.create_logout_url('/'),
+<<<<<<< HEAD
+            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+            "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
+=======
             "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
             "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False).fetch(),
             "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False).fetch(),
             "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch(),
             "laundry":WardrobeSave.query(WardrobeSave.laundry==True).fetch(),
+>>>>>>> 1db400a210a38afbe03d554fb58c84af97be01e1
         }
         self.response.write(response_html.render(values))
 
@@ -148,10 +156,20 @@ class FavoritesHandler(webapp2.RequestHandler):
         values = {
             'user_nickname': user.nickname(),
             'logoutUrl': users.create_logout_url('/'),
+<<<<<<< HEAD
+            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+            "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
+=======
             "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
-            "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False).fetch(),
+            "pantsWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False).fetch(),
             "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False).fetch(),
-            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch()
+            "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False).fetch(),
+            "coatWardrobe":WardrobeSave.query(WardrobeSave.type=="coat", WardrobeSave.laundry==False).fetch(),
+            "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False).fetch(),
+            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch(),
+>>>>>>> b7b7d879d683196a2a961a178fd277941f66e466
         }
         self.response.write(response_html.render(values))
 
@@ -181,7 +199,7 @@ class GetWeather(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         logging.info('current user is: %s' % (user.nickname()))
-        response_html = jinja_env.get_template("templates/main_page.html")
+        # response_html = jinja_env.get_template("templates/main_page.html")
 
         temp = self.request.get("temp")
         maxTemp=self.request.get("maxTemp")
@@ -204,46 +222,46 @@ class GetWeather(webapp2.RequestHandler):
             values={
                 'user_nickname': user.nickname(),
                 'logoutUrl': users.create_logout_url('/'),
-                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
-                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.materials=="wool", WardrobeSave.materials=="denim", WardrobeSave.materials=="cotton", WardrobeSave.length=="long").fetch(),
-                "coatWardrobe":WardrobeSave.query(WardrobeSave.type=="coat", WardrobeSave.laundry==False).fetch(),
-                "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False).fetch()
+                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.materials=="wool", WardrobeSave.materials=="denim", WardrobeSave.materials=="cotton", WardrobeSave.length=="long", WardrobeSave.user==user.nickname().nickname).fetch(),
+                "coatWardrobe":WardrobeSave.query(WardrobeSave.type=="coat", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+                "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
             }
         elif(temp>35 and temp<=50):
             values={
                 'user_nickname': user.nickname(),
                 'logoutUrl': users.create_logout_url('/'),
-                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
-                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long").fetch(),
-                "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False).fetch(),
-                "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False).fetch()
+                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long", WardrobeSave.user==user.nickname()).fetch(),
+                "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+                "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
             }
         elif(temp>50 and temp<=60):
             values={
                 'user_nickname': user.nickname(),
                 'logoutUrl': users.create_logout_url('/'),
-                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
-                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long").fetch(),
-                "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False).fetch()
+                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long", WardrobeSave.user==user.nickname()).fetch(),
+                "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
             }
         elif(temp>60 and temp<=70):
             values={
                 'user_nickname': user.nickname(),
                 'logoutUrl': users.create_logout_url('/'),
-                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.length=="short").fetch(),
-                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long").fetch()
+                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.length=="short", WardrobeSave.user==user.nickname()).fetch(),
+                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long", WardrobeSave.user==user.nickname()).fetch()
             }
         else:
             values={
                 'user_nickname': user.nickname(),
                 'logoutUrl': users.create_logout_url('/'),
-                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.length=="short").fetch(),
-                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="short").fetch(),
-                "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False).fetch(),
-                "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch()
+                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.length=="short", WardrobeSave.user==user.nickname()).fetch(),
+                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="short", WardrobeSave.user==user.nickname()).fetch(),
+                "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+                "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
             }
 
-        self.response.write(response_html.render(values))
+        return self.response.write(response_html.render(values))
 
 
 class TesterHandler(webapp2.RequestHandler):
@@ -267,5 +285,5 @@ app = webapp2.WSGIApplication([
     ('/add_favorite', FavoritesHandler),
     ('/get_weather', GetWeather),
     ("/testing", TesterHandler),
-    ('/list_favorite', ListFavoritesHandler),
+    ('/list_favorite', ListFavoritesHandler)
 ], debug=True)

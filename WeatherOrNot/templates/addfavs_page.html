@@ -43,11 +43,11 @@
 
     <p>Bottoms:</p>
     <div>
-      {% for pant in bottomWardrobe %}
+      {% for pant in pantsWardrobe %}
         <img class = "img" src= "{{pant.url}}" />
       {% endfor %}
       <p></p>
-    {% for pant in bottomWardrobe %}
+    {% for pant in pantsWardrobe %}
       <input type="radio" name="bottomForm" id="bottoms" value="{{pant.url}}"/>
       <label for="bottoms">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</label>
     {% endfor %}
@@ -63,6 +63,45 @@
     {% for skirt in skirtWardrobe %}
     <input type="radio" name="skirtForm" id="skirts" value="{{skirt.url}}"/>
     <label for="skirts">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</label>
+    {% endfor %}
+    <br /><br />
+    </div>
+
+    <p>Sweaters:</p>
+    <div>
+      {% for sweater in sweaterWardrobe %}
+        <img class = "img" src= "{{sweater.url}}" />
+      {% endfor %}
+      <p> </p>
+    {% for sweater in sweaterWardrobe %}
+    <input type="radio" name="sweaterForm" id="sweaters" value="{{sweater.url}}"/>
+    <label for="sweaters">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</label>
+    {% endfor %}
+    <br /><br />
+    </div>
+
+    <p>Coats:</p>
+    <div>
+      {% for coat in coatWardrobe %}
+        <img class = "img" src= "{{coat.url}}" />
+      {% endfor %}
+      <p> </p>
+    {% for coat in coatWardrobe %}
+    <input type="radio" name="coatForm" id="coats" value="{{coat.url}}"/>
+    <label for="coats">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</label>
+    {% endfor %}
+    <br /><br />
+    </div>
+
+    <p>Jackets:</p>
+    <div>
+      {% for jacket in jacketWardrobe %}
+        <img class = "img" src= "{{jacket.url}}" />
+      {% endfor %}
+      <p> </p>
+    {% for jacket in jacketWardrobe %}
+    <input type="radio" name="jacketForm" id="jackets" value="{{jacket.url}}"/>
+    <label for="jackets">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</label>
     {% endfor %}
     <br /><br />
     </div>
