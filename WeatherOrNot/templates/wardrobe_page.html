@@ -22,6 +22,8 @@
       <li><a href="/wardrobe">See Wardrobe!</a></li>
       <li><a href="/add_item">Add Item to Wardrobe</a></li>
       <li><a href="/suggestion">Check out our Suggestions!</a></li>
+      <li><a href="/add_favorite">Add Favorite Outfits!</a></li>
+      <li><a href="/list_favorite">Check out YOUR Favorites!</a></li>
       <li><a href="http://twitter.com/?status=My outfit is faab!"><img class="img2" src="http://www.anthonysgulfport.com/wp-content/uploads/2014/09/twitter-icon-300x300.png" id="twitter"/></a></li>
       <li><a href="https://www.facebook.com/share.php?u="><img class="img2" src="https://seeklogo.com/images/F/facebook-icon-logo-C61047A9E7-seeklogo.com.png" id="facebook"/></a></li>
       <li><a href="https://www.instagram.com"><img class="img2" src="https://instagram-brand.com/wp-content/uploads/2016/11/app-icon2.png" id="instagram"/></a></li>
@@ -38,35 +40,61 @@
 
         </span>
       {% endfor %}
-
-
-
       <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
     </div>
+
+
 
     <p>Bottoms:</p>
     <div>
       {% for pant in bottomWardrobe %}
+      <span class='itemContainer'>
+        Checkbox: <input type="checkbox" id="myCheck" name="{{pant.key.urlsafe()}}">
+        <img class = "img" src = "{{pant.url}}" width="500" height="375" />
+
+      </span>
         <img class = "img" src= "{{pant.url}}" />
       {% endfor %}
       <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
     </div>
+
+
+
     <p>Skirts:</p>
     <div>
       {% for skirt in skirtWardrobe %}
+      <span class='itemContainer'>
+        Checkbox: <input type="checkbox" id="myCheck" name="{{skirt.key.urlsafe()}}">
+        <img class = "img" src = "{{skirt.url}}" width="500" height="375" />
+
+      </span>
         <img class = "img" src= "{{skirt.url}}" />
       {% endfor %}
       <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
     </div>
+
+
+
     <p>Dresses:</p>
     <div>
       {% for dress in dressWardrobe %}
+      <span class='itemContainer'>
+        Checkbox: <input type="checkbox" id="myCheck" name="{{dress.key.urlsafe()}}">
+        <img class = "img" src = "{{dress.url}}" width="500" height="375" />
+
+      </span>
         <img class = "img" src= "{{dress.url}}" />
       {% endfor %}
       <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
-    <input type="submit" value="submit">
+      <input type="submit" value="submit">
     </form>
     </div>
+
+    <h1 class='laundryWords'>
+      Stuff below this is laundry
+    </h1>
+
+
 
 
   </body>

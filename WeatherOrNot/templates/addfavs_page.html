@@ -1,6 +1,6 @@
 <html>
   <head>
-    <script src="/static/wardrobe_slideshow.js"></script>
+    <script src="/static/addfavs_page.js"></script>
     <title>Wardrobe</title>
     <link rel="stylesheet" href="/static/style.css"></link>
     <meta charset="utf-8">
@@ -10,10 +10,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body class="body">
-    <div id="logout">
-      <p>{{user_nickname}}</p>
-      <a href="{{logoutUrl}}">Log Out</a>
-    </div>
     <h1>Add Favorite Outfits</h1>
 
     <nav class="navbar navbar-inverse">
@@ -22,27 +18,27 @@
       <li><a href="/wardrobe">See Wardrobe!</a></li>
       <li><a href="/add_item">Add Item to Wardrobe</a></li>
       <li><a href="/suggestion">Check out our Suggestions!</a></li>
+      <li><a href="/add_favorite">Add Favorite Outfits!</a></li>
+      <li><a href="/list_favorite">Check out YOUR Favorites!</a></li>
       <li><a href="http://twitter.com/?status=My outfit is faab!"><img class="img2" src="http://www.anthonysgulfport.com/wp-content/uploads/2014/09/twitter-icon-300x300.png" id="twitter"/></a></li>
       <li><a href="https://www.facebook.com/share.php?u="><img class="img2" src="https://seeklogo.com/images/F/facebook-icon-logo-C61047A9E7-seeklogo.com.png" id="facebook"/></a></li>
       <li><a href="https://www.instagram.com"><img class="img2" src="https://instagram-brand.com/wp-content/uploads/2016/11/app-icon2.png" id="instagram"/></a></li>
     </ul>
     </nav>
 
-    <div id="image_wrap">
+<form method="post">
+<button id ="submit">Submit!</button>
       <p>Tops:</p>
+      <div>
+        {% for top in topsWardrobe %}
+          <img class = "img" src = "{{top.url}}" />
+        {% endfor %}
+        <p></p>
       {% for top in topsWardrobe %}
-        <img class = "img" src = "{{top.url}}" width="500" height="375" />
+        <input type="radio" name="topForm" id="tops" value="{{top.url}}"/>
+        <label for="tops">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</label>
       {% endfor %}
-      <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
-      {% for top in topsWardrobe %}
-        <form>
-          <input type="radio" name="gender" value="male" checked> Male<br>
-          <input type="radio" name="gender" value="female"> Female<br>
-          <input type="radio" name="gender" value="other"> Other
-        </form>
-      {% endfor %}
-
-      <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+      <br /><br />
     </div>
 
     <p>Bottoms:</p>
@@ -50,23 +46,40 @@
       {% for pant in bottomWardrobe %}
         <img class = "img" src= "{{pant.url}}" />
       {% endfor %}
-      <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+      <p></p>
+    {% for pant in bottomWardrobe %}
+      <input type="radio" name="bottomForm" id="bottoms" value="{{pant.url}}"/>
+      <label for="bottoms">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</label>
+    {% endfor %}
+    <br /><br />
     </div>
+
     <p>Skirts:</p>
     <div>
       {% for skirt in skirtWardrobe %}
         <img class = "img" src= "{{skirt.url}}" />
       {% endfor %}
-      <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+      <p> </p>
+    {% for skirt in skirtWardrobe %}
+    <input type="radio" name="skirtForm" id="skirts" value="{{skirt.url}}"/>
+    <label for="skirts">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</label>
+    {% endfor %}
+    <br /><br />
     </div>
+
     <p>Dresses:</p>
     <div>
       {% for dress in dressWardrobe %}
         <img class = "img" src= "{{dress.url}}" />
       {% endfor %}
-      <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+      <p></p>
+    {% for dress in dressWardrobe %}
+    <input type="radio" name="dressForm" id="dresses" value="{{dress.url}}"/>
+    <label for="dresses">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</label>
+    {% endfor %}
+    <br /><br />
     </div>
-
+</form>
 
   </body>
 </html>

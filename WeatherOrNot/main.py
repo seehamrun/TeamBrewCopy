@@ -4,7 +4,6 @@ import jinja2
 import os
 import json
 
-import api
 import time
 
 from google.appengine.api import users
@@ -21,6 +20,10 @@ class WardrobeSave(ndb.Model):
     materials=ndb.StringProperty()
     length=ndb.StringProperty()
     laundry=ndb.BooleanProperty()
+
+class FavoriteSave(ndb.Model):
+    topUrl = ndb.StringProperty()
+    bottomUrl = ndb.StringProperty()
 
 
 jinja_env = jinja2.Environment(
@@ -103,6 +106,16 @@ class WardrobePage(webapp2.RequestHandler):
         }
         self.response.write(response_html.render(values))
 
+    def post(self):
+        logging.info(self.request.POST.keys())
+        for keys in self.request.POST.keys():
+            DBKey = ndb.Key(urlsafe=keys)
+            TheItem = DBKey.get()
+            TheItem.laundry = True
+            TheItem.put()
+        time.sleep(1)
+        self.redirect("/wardrobe")
+
 class FavoritesHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -119,16 +132,26 @@ class FavoritesHandler(webapp2.RequestHandler):
             "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch()
         }
         self.response.write(response_html.render(values))
-    def post(self):
-        logging.info(self.request.POST.keys())
-        for keys in self.request.POST.keys():
-            DBKey = ndb.Key(urlsafe=keys)
-            TheItem = DBKey.get()
-            TheItem.laundry = True
-            TheItem.put()
-        time.sleep(1)
-        self.redirect("/wardrobe")
 
+    def post(self):
+        logging.info(self.request.POST)
+        top = self.request.get('topForm')
+        bottom= self.request.get('bottomForm')
+        stored_clothing = FavoriteSave(topUrl=top, bottomUrl=bottom)
+        stored_clothing.put()
+        #response_html = jinja_env.get_template("templates/addfavs_page.html")
+        time.sleep(1)
+        #logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
+        self.redirect('/add_favorite')
+
+
+class ListFavoritesHandler(webapp2.RequestHandler):
+    def get(self):
+        response_html = jinja_env.get_template("templates/listfavs_page.html")
+        values = {
+            "favorites":FavoriteSave.query().fetch(),
+        }
+        self.response.write(response_html.render(values))
 
 
 
@@ -221,5 +244,6 @@ app = webapp2.WSGIApplication([
     ('/suggestion', SuggestionsHandler),
     ('/add_favorite', FavoritesHandler),
     ('/get_weather', GetWeather),
-    ("/testing", TesterHandler)
+    ("/testing", TesterHandler),
+    ('/list_favorite', ListFavoritesHandler),
 ], debug=True)
