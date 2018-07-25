@@ -14,6 +14,7 @@ from google.appengine.api import urlfetch
 class ZipSave(ndb.Model):
     nick=ndb.StringProperty()
     zip=ndb.StringProperty()
+
 class WardrobeSave(ndb.Model):
     url = ndb.StringProperty()
     type=ndb.StringProperty()
