@@ -3,9 +3,7 @@ import logging
 import jinja2
 import os
 import json
-
 import time
-
 from google.appengine.api import users
 from google.appengine.ext import ndb
 from google.appengine.api import urlfetch
@@ -31,17 +29,14 @@ class WardrobeSave(ndb.Model):
     laundry=ndb.BooleanProperty()
     user = ndb.StringProperty()
 
-
 class FavoriteSave(ndb.Model):
     topUrl = ndb.StringProperty()
     bottomUrl = ndb.StringProperty()
-
 
 jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
-
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
@@ -67,7 +62,6 @@ class MainPage(webapp2.RequestHandler):
         time.sleep(1)
         #logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
         self.redirect('/')
-
 
 class AddClothingHandler(webapp2.RequestHandler):
     def get(self):
@@ -117,7 +111,7 @@ class WardrobePage(webapp2.RequestHandler):
         itemKeys = []
         logging.info(self.request.POST)
         for keys in self.request.POST.keys():
-            if keys == "toWardrobe":
+            if keys == "toWardrobe" or keys=="deleteClothing" or keys=="toLaundry":
                 button = keys
             else:
                 itemKeys.append(keys)
@@ -127,9 +121,12 @@ class WardrobePage(webapp2.RequestHandler):
             TheItem = DBKey.get()
             if button == "toWardrobe":
                 TheItem.laundry = False
+                TheItem.put()
+            elif button=="deleteClothing":
+                DBKey.delete()
             else:
                 TheItem.laundry = True
-            TheItem.put()
+                TheItem.put()
         time.sleep(1)
         self.redirect("/wardrobe")
 
@@ -197,8 +194,6 @@ class GetWeather(webapp2.RequestHandler):
             }
 
         return self.response.write(response_html.render(values))
-
-
 
 class FavoritesHandler(webapp2.RequestHandler):
     def get(self):
@@ -276,7 +271,6 @@ class FavoritesHandler(webapp2.RequestHandler):
         #logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
         self.redirect('/add_favorite')
 
-
 class ListFavoritesHandler(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/listfavs_page.html")
@@ -292,25 +286,6 @@ class CalendarHandler(webapp2.RequestHandler):
             "favorites":CalendarSave.query().fetch(),
         }
         self.response.write(response_html.render(values))
-
-class DeleteWardrobeHandler(webapp2.RequestHandler):
-    def get(self):
-        url_to_delete = self.request.get('url_id')
-        response_html = jinja_env.get_template("templates/wardrobe_page.html")
-        key = ndb.Key(urlsafe=url_to_delete)
-        the_url = key.get()
-        data = {
-            "url": the_url.name,
-            "url_id": the_url.key.urlsafe()
-        }
-        self.response.write(response_html.render(data))
-
-    def post(self):
-        key = ndb.Key(urlsafe=self.request.get('url_id'))
-        # Here you *could* look up the key to get the actual entry. This is
-        # useful if you want to do something with the dog before or after you
-        # delete because you can't lookup after you call delete on the key
-        key.delete()
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),

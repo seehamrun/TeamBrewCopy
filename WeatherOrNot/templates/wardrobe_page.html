@@ -55,7 +55,6 @@
 
       </span>
         <img class = "img" src= "{{pant.url}}" />
-        <a href="/delete_wardrobe?url={{pant.key}}" name = "url_id">Delete</a>
       {% endfor %}
       <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
     </div>
@@ -88,7 +87,8 @@
         <img class = "img" src= "{{dress.url}}" />
       {% endfor %}
       <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
-      <input type="submit" value="Send to Laundry">
+      <input type="submit" value="Send to Laundry" name = "toLaundry">
+      <input type = "submit" value = "Delete Item" name = "deleteClothing">
     </form>
     </div>
 
