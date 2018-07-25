@@ -3,7 +3,9 @@ import logging
 import jinja2
 import os
 import json
+
 import api
+import time
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
@@ -66,7 +68,6 @@ class AddClothingHandler(webapp2.RequestHandler):
         response_html = jinja_env.get_template('templates/upload-images/index.html')
         logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
 
-
 class SuggestionsHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -115,6 +116,17 @@ class FavoritesHandler(webapp2.RequestHandler):
             "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch()
         }
         self.response.write(response_html.render(values))
+    def post(self):
+        logging.info(self.request.POST.keys())
+        for keys in self.request.POST.keys():
+            DBKey = ndb.Key(urlsafe=keys)
+            TheItem = DBKey.get()
+            TheItem.laundry = True
+            TheItem.put()
+        time.sleep(1)
+        self.redirect("/wardrobe")
+
+
 
 
 class GetWeather(webapp2.RequestHandler):
