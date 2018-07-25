@@ -18,10 +18,10 @@ class CalendarSave(ndb.Model):
     user=ndb.StringProperty()
     urltop=ndb.StringProperty()
     urlbottom=ndb.StringProperty()
-    urlskirt=ndb.StringProperty()
-    urldress=ndb.StringProperty()
-    urljacket=ndb.StringProperty()
-    urlcoat=ndb.StringProperty()
+    # urlskirt=ndb.StringProperty()
+    # urldress=ndb.StringProperty()
+    # urljacket=ndb.StringProperty()
+    # urlcoat=ndb.StringProperty()
 
 class WardrobeSave(ndb.Model):
     url = ndb.StringProperty()
@@ -303,8 +303,10 @@ class FavoritesHandler(webapp2.RequestHandler):
         logging.info(self.request.POST)
         top = self.request.get('topForm')
         bottom= self.request.get('bottomForm')
+        history_clothing=CalendarSave(urltop=top, urlbottom = bottom)
         stored_clothing = FavoriteSave(topUrl=top, bottomUrl=bottom)
         stored_clothing.put()
+        history_clothing.put()
         #response_html = jinja_env.get_template("templates/addfavs_page.html")
         time.sleep(1)
         #logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
@@ -321,32 +323,11 @@ class ListFavoritesHandler(webapp2.RequestHandler):
 
 class CalendarHandler(webapp2.RequestHandler):
     def get(self):
-        user = users.get_current_user()
-        logging.info('current user is: %s' % (user.nickname()))
         response_html = jinja_env.get_template("templates/calendar.html")
         values = {
-            'user_nickname': user.nickname(),
-            'logoutUrl': users.create_logout_url('/'),
-            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-            "pantsWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-            "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-            "coatWardrobe":WardrobeSave.query(WardrobeSave.type=="coat", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-            "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
+            "favorites":CalendarSave.query().fetch(),
         }
         self.response.write(response_html.render(values))
-
-    def post(self):
-        logging.info(self.request.POST)
-        top = self.request.get('topForm')
-        bottom= self.request.get('bottomForm')
-        stored_clothing = FavoriteSave(topUrl=top, bottomUrl=bottom)
-        stored_clothing.put()
-        #response_html = jinja_env.get_template("templates/addfavs_page.html")
-        time.sleep(1)
-        #logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
-        self.redirect('/add_favorite')
 
 
 def weather(temp):
