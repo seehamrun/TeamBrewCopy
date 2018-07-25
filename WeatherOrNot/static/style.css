@@ -1,6 +1,5 @@
 .img {
-    position: relative;
-    float: left;
+    position:
     width:  200px;
     height: 200px;
     background-position: 50% 50%;
@@ -30,4 +29,10 @@
     background-size:     cover;
     top: 50%;
     margin-top: -10px;
+}
+
+.itemContainer{
+  border: 1px solid black;
+
+
 }

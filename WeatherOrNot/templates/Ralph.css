@@ -1,8 +1,19 @@
+.officialMenu{
+  width: 100%;
+  height: 150px;
+  background-color: white;
+}
+
+h1{
+  padding-top: 20px;
+  text-align: center;
+  font-size: 20px;
+  font-family: Roboto, sans-serif;
+}
 #menu{
-  margin: 0;
-  padding: 0;
-  padding-top: 25%;
-  z-index: 2;
+  display: table;
+  margin: 0 auto;
+  padding-top: 25px;
 }
 
 #menu li{
@@ -14,9 +25,9 @@
   text-decoration: none;
   position: relative;
   color: #313131;
-  font-size: 20px;
+  font-size: 12px;
   font-weight: 700;
-  font-family: sans-serif;
+  font-family: Roboto, sans-serif;
   display: block;
   overflow: hidden;
   transition: 0.7s all;
@@ -28,7 +39,7 @@
   content:'';
   width:60px;
   position: absolute;
-  border-bottom: 8px solid;
+  border-bottom: 3px solid;
   bottom: 0;
   right: 350px;
   transition: 0.7s all;
@@ -39,20 +50,58 @@
   right: 0;
 }
 
+.centeredImageofHome{
+    width: 100%;
+    height: 400px;
+    overflow:
+}
+.hereIsTheImage {
+    margin-top: 0;
+    padding-top: 0;
+}
+
 .center {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18px;
-    z-index: 1;
+    left: 60%;
+    padding-top: 100px;
+    text-align: center;
+    color: white;
+    font-size: 60px;
+    font-weight: bold;
+    font-family: Roboto, sans-serif;
 }
 
-#weatherDisplay {
-    margin: 0;
-    padding: 0;
+.Click {
+    position: absolute;
+    top: 60%;
+    left: 69%;
+    padding-top: 100px;
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    font-weight: normal;
+    font-family: Roboto, sans-serif;
+}
+
+#clothesHangerDisplay {
+  background-image: url("https://wallpapercave.com/wp/wp1866272.jpg");
+
+    clip: rect(335px, auto, auto, auto);
+    display: block;
+    border-radius: 8px;
     width: 100%;
     height: auto;
-    opacity: 0.5;
-    z-index: 0;
+    position: absolute;
+    bottom: 10px;
+    opacity: 0.8;
+    overflow: hidden;
+}
+
+#whiteBox {
+  position: absolute;
+  top: 40%;
+  left: 42%;
+  clip: rect(0px, 1000px, 100px, 0px);
+  transform: scale(1.5);
 }

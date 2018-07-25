@@ -25,10 +25,17 @@
     </nav>
 
     <div id="image_wrap">
+    <form method='post'>
       <p>Tops:</p>
       {% for top in topsWardrobe %}
-        <img class = "img" src = "{{top.url}}" width="500" height="375" />
+        <span class='itemContainer'>
+          Checkbox: <input type="checkbox" id="myCheck" name="{{top.key.urlsafe()}}">
+          <img class = "img" src = "{{top.url}}" width="500" height="375" />
+
+        </span>
       {% endfor %}
+
+
 
       <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
     </div>
@@ -53,6 +60,8 @@
         <img class = "img" src= "{{dress.url}}" />
       {% endfor %}
       <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+    <input type="submit" value="submit">
+    </form>
     </div>
   </body>
 </html>
