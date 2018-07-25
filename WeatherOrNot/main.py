@@ -14,6 +14,10 @@ class WardrobeSave(ndb.Model):
     length=ndb.StringProperty()
     laundry=ndb.BooleanProperty()
 
+class FavoriteSave(ndb.Model):
+    topUrl = ndb.StringProperty()
+    bottomUrl = ndb.StringProperty()
+
 
 jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -79,6 +83,30 @@ class FavoritesHandler(webapp2.RequestHandler):
         }
         self.response.write(response_html.render(values))
 
+        self.response.headers['Content-Type'] = 'text/html'
+        return self.response.write(response_html.render())
+        self.response.headers['Content-Type'] = 'text/html'
+        top = self.request.get('tops')
+        bottom= self.request.get('bottoms')
+
+    def post(self):
+        top = self.request.get('tops')
+        bottom= self.request.get('bottoms')
+        stored_clothing = FavoriteSave(topUrl=top, bottomUrl=bottom)
+        stored_clothing.put()
+        response_html = jinja_env.get_template("templates/addfavs_page.html")
+        logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
+
+
+class ListFavoritesHandler(webapp2.RequestHandler):
+    def get(self):
+        response_html = jinja_env.get_template("templates/listfavs_page.html")
+        values = {
+            "favorites":FavoriteSave.query().fetch(),
+        }
+        self.response.write(response_html.render(values))
+
+
 
 class GetWeather(webapp2.RequestHandler):
     def get(self):
@@ -126,5 +154,6 @@ app = webapp2.WSGIApplication([
     ('/suggestion', SuggestionsHandler),
     ('/add_favorite', FavoritesHandler),
     ('/get_weather', GetWeather),
-    ("/testing", TesterHandler)
+    ("/testing", TesterHandler),
+    ('/list_favorite', ListFavoritesHandler),
 ], debug=True)
