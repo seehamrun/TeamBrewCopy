@@ -11,7 +11,7 @@ from google.appengine.ext import ndb
 from google.appengine.api import urlfetch
 
 class ZipSave(ndb.Model):
-    nick=ndb.StringProperty()
+    user=ndb.StringProperty()
     zip=ndb.StringProperty()
 
 
@@ -53,7 +53,7 @@ class MainPage(webapp2.RequestHandler):
         logging.info(self.request.POST)
         zipCode = self.request.get('zip')
         user=users.get_current_user()
-        stored_zip = ZipSave(zip=zipCode, user)
+        stored_zip = ZipSave(zip=zipCode, user=user.nickname())
         stored_zip.put()
         #response_html = jinja_env.get_template("templates/addfavs_page.html")
         time.sleep(1)
