@@ -293,6 +293,6 @@ app = webapp2.WSGIApplication([
     ('/suggestion', SuggestionsHandler),
     ('/add_favorite', FavoritesHandler),
     ('/get_weather', GetWeather),
-    ('/calendar', CalendarHandler)
+    ('/calendar', CalendarHandler),
     ('/list_favorite', ListFavoritesHandler)
 ], debug=True)
