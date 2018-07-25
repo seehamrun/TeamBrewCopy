@@ -19,9 +19,8 @@ function addOutfitToHistory(doneCallback){
 // that calls queryGiphy using the displayResult function as the callback
 
 function submitClick() {
-  addGifToFavorites(() => {
     alert("saved")
-  })
+
 }
 
 function woreClick(){
