@@ -119,6 +119,74 @@ class SuggestionsHandler(webapp2.RequestHandler):
         logging.info('current user is: %s' % (user.nickname()))
         response_html = jinja_env.get_template("templates/main_page.html")
 
+        response_html = jinja_env.get_template("templates/addfavs_page.html")
+        values = {
+            'user_nickname': user.nickname(),
+            'logoutUrl': users.create_logout_url('/'),
+            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+            "pantsWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+            "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+            "coatWardrobe":WardrobeSave.query(WardrobeSave.type=="coat", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+            "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
+        }
+        self.response.write(response_html.render(values))
+
+    def post(self):
+        logging.info(self.request.POST)
+        top = self.request.get('topForm')
+        bottom= self.request.get('bottomForm')
+        skirt = self.request.get('skirtForm')
+        dress = self.request.get('dressForm')
+        coat = self.request.get('coatForm')
+        jacket = self.request.get('jacketForm')
+        sweater = self.request.get('sweaterForm')
+
+        if(top!="" and bottom!=""):
+            stored_clothing = FavoriteSave(topUrl=top, bottomUrl=bottom)
+            stored_clothing.put()
+        elif(top!="" and skirt!=""):
+            stored_clothing = FavoriteSave(topUrl=top, bottomUrl=skirt)
+            stored_clothing.put()
+        elif(sweater!="" and bottom!=""):
+            stored_clothing = FavoriteSave(topUrl=sweater, bottomUrl=bottom)
+            stored_clothing.put()
+        elif(sweater!="" and skirt!=""):
+            stored_clothing = FavoriteSave(topUrl=sweater, bottomUrl=skirt)
+            stored_clothing.put()
+        elif(coat!="" and bottom!=""):
+            stored_clothing = FavoriteSave(topUrl=coat, bottomUrl=bottom)
+            stored_clothing.put()
+        elif(jacket!="" and bottom!=""):
+            stored_clothing = FavoriteSave(topUrl=jacket, bottomUrl=bottom)
+            stored_clothing.put()
+        else:
+            response = """
+            <html>
+                <head>
+                    <link rel="stylesheet" href="/static/style.css"></link>
+                </head>
+                <body>
+                    <p>This does not work</p>
+                </body>
+            </html>"""
+            return self.response.write(response)
+
+        time.sleep(1)
+        #logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
+        self.redirect('/add_favorite')
+
+
+class ListFavoritesHandler(webapp2.RequestHandler):
+    def get(self):
+        response_html = jinja_env.get_template("templates/listfavs_page.html")
+        values = {
+            "favorites":FavoriteSave.query().fetch(),
+        }
+        self.response.write(response_html.render(values))
+
+
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
         self.response.write(response_html.render())
 
