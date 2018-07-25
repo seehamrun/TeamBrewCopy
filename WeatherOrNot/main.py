@@ -14,7 +14,10 @@ class ZipSave(ndb.Model):
     nick=ndb.StringProperty()
     zip=ndb.StringProperty()
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1db400a210a38afbe03d554fb58c84af97be01e1
 class WardrobeSave(ndb.Model):
     url = ndb.StringProperty()
     type=ndb.StringProperty()
@@ -49,6 +52,16 @@ class MainPage(webapp2.RequestHandler):
           'logoutUrl': users.create_logout_url('/')
         }
         return self.response.write(response_html.render(data))
+    def post(self):
+        logging.info(self.request.POST)
+        zipCode = self.request.get('zip')
+        user=users.get_current_user()
+        stored_zip = ZipSave(zip=zipCode, user)
+        stored_zip.put()
+        #response_html = jinja_env.get_template("templates/addfavs_page.html")
+        time.sleep(1)
+        #logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
+        self.redirect('/')
 
 
 class AddClothingHandler(webapp2.RequestHandler):
@@ -97,12 +110,41 @@ class WardrobePage(webapp2.RequestHandler):
         values = {
             'user_nickname': user.nickname(),
             'logoutUrl': users.create_logout_url('/'),
+<<<<<<< HEAD
             "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
             "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
             "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
             "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
+=======
+            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
+            "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False).fetch(),
+            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False).fetch(),
+            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch(),
+            "laundry":WardrobeSave.query(WardrobeSave.laundry==True).fetch(),
+>>>>>>> 1db400a210a38afbe03d554fb58c84af97be01e1
         }
         self.response.write(response_html.render(values))
+
+    def post(self):
+        button = None
+        itemKeys = []
+        logging.info(self.request.POST)
+        for keys in self.request.POST.keys():
+            if keys == "toWardrobe":
+                button = keys
+            else:
+                itemKeys.append(keys)
+
+        for itemKey in itemKeys:
+            DBKey = ndb.Key(urlsafe=itemKey)
+            TheItem = DBKey.get()
+            if button == "toWardrobe":
+                TheItem.laundry = False
+            else:
+                TheItem.laundry = True
+            TheItem.put()
+        time.sleep(1)
+        self.redirect("/wardrobe")
 
 class FavoritesHandler(webapp2.RequestHandler):
     def get(self):
@@ -120,31 +162,17 @@ class FavoritesHandler(webapp2.RequestHandler):
             "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
         }
         self.response.write(response_html.render(values))
-    def post(self):
-        logging.info(self.request.POST.keys())
-        for keys in self.request.POST.keys():
-            DBKey = ndb.Key(urlsafe=keys)
-            TheItem = DBKey.get()
-            TheItem.laundry = True
-            TheItem.put()
-        time.sleep(1)
-        self.redirect("/wardrobe")
-
-
-
-        self.response.headers['Content-Type'] = 'text/html'
-        return self.response.write(response_html.render())
-        self.response.headers['Content-Type'] = 'text/html'
-        top = self.request.get('tops')
-        bottom= self.request.get('bottoms')
 
     def post(self):
-        top = self.request.get('tops')
-        bottom= self.request.get('bottoms')
+        logging.info(self.request.POST)
+        top = self.request.get('topForm')
+        bottom= self.request.get('bottomForm')
         stored_clothing = FavoriteSave(topUrl=top, bottomUrl=bottom)
         stored_clothing.put()
-        response_html = jinja_env.get_template("templates/addfavs_page.html")
-        logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
+        #response_html = jinja_env.get_template("templates/addfavs_page.html")
+        time.sleep(1)
+        #logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
+        self.redirect('/add_favorite')
 
 
 class ListFavoritesHandler(webapp2.RequestHandler):

@@ -1,5 +1,3 @@
-currentTemp = ""
-
 fetch("https://api.worldweatheronline.com/premium/v1/weather.ashx?key=" + weather_key + "&q=60607&format=json&num_of_days=1")
   .then(function(response) {
     response.json().then(function(data) {
@@ -7,7 +5,6 @@ fetch("https://api.worldweatheronline.com/premium/v1/weather.ashx?key=" + weathe
       currentTemp = data.data.current_condition[0].temp_F
       currentCondition = data.data.current_condition[0].weatherDesc[0].value
       temp.innerHTML = "<h1>The current weather is " + currentTemp + "F</h1>"
-      condition.innerHTML = "<p>" + currentCondition + "</p>"
       pic.innerHTML = "<img src='" + data.data.current_condition[0].weatherIconUrl[0].value + "'/>"
 
       jQuery.get("/?temp=" + currentTemp + "&condition=" + currentCondition, () => {
@@ -16,3 +13,30 @@ fetch("https://api.worldweatheronline.com/premium/v1/weather.ashx?key=" + weathe
 
     });
   })
+
+  var currentGifUrl = null;
+  // Makes the element with ID 'resultPane' visible, and sets the element with ID
+  // 'result' to contain resultJson
+
+
+  // contacts our server, and asks it to add gifUrl to the list of favorite GIFs.
+  // doneCallback should be a function, which addGifToFavorites will invoke when
+  // the gifUrl is saved successfully.
+  function addGifToFavorites(doneCallback) {
+    var zipcode= document.querySelector('#zip').value;
+    jQuery.post("/", {zipcode}, doneCallback);
+  }
+
+  // TODO: Create an event handler for when the button is clicked
+  // that calls queryGiphy using the displayResult function as the callback
+
+  function submitClick() {
+    addGifToFavorites(() => {
+      alert("saved")
+  })
+  }
+
+
+  window.addEventListener('load', () => {
+    document.querySelector('#submit').addEventListener("click", submitClick)
+  });
