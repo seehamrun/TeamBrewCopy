@@ -20,6 +20,7 @@
       <li><a href="/suggestion">Check out our Suggestions!</a></li>
       <li><a href="/add_favorite">Add Favorite Outfits!</a></li>
       <li><a href="/list_favorite">Check out YOUR Favorites!</a></li>
+      <li><a href="/calendar">History</a></li>
       <li><a href="http://twitter.com/?status=My outfit is faab!"><img class="img2" src="http://www.anthonysgulfport.com/wp-content/uploads/2014/09/twitter-icon-300x300.png" id="twitter"/></a></li>
       <li><a href="https://www.facebook.com/share.php?u="><img class="img2" src="https://seeklogo.com/images/F/facebook-icon-logo-C61047A9E7-seeklogo.com.png" id="facebook"/></a></li>
       <li><a href="https://www.instagram.com"><img class="img2" src="https://instagram-brand.com/wp-content/uploads/2016/11/app-icon2.png" id="instagram"/></a></li>
@@ -28,6 +29,7 @@
 
 <form method="post">
 <button id ="submit">Submit!</button>
+<button id = "worn"> I wore this today! </button>
       <p>Tops:</p>
       <div>
         {% for top in topsWardrobe %}
@@ -36,7 +38,7 @@
         <p></p>
       {% for top in topsWardrobe %}
         <input type="radio" name="topForm" id="tops" value="{{top.url}}"/>
-        <label for="tops">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</label>
+        <label for="tops">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp;</label>
       {% endfor %}
       <br /><br />
     </div>
@@ -49,7 +51,7 @@
       <p></p>
     {% for pant in pantsWardrobe %}
       <input type="radio" name="bottomForm" id="bottoms" value="{{pant.url}}"/>
-      <label for="bottoms">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</label>
+      <label for="bottoms">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp;</label>
     {% endfor %}
     <br /><br />
     </div>
@@ -62,7 +64,7 @@
       <p> </p>
     {% for skirt in skirtWardrobe %}
     <input type="radio" name="skirtForm" id="skirts" value="{{skirt.url}}"/>
-    <label for="skirts">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</label>
+    <label for="skirts">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp;</label>
     {% endfor %}
     <br /><br />
     </div>
@@ -75,7 +77,7 @@
       <p> </p>
     {% for sweater in sweaterWardrobe %}
     <input type="radio" name="sweaterForm" id="sweaters" value="{{sweater.url}}"/>
-    <label for="sweaters">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</label>
+    <label for="sweaters">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; </label>
     {% endfor %}
     <br /><br />
     </div>
@@ -88,7 +90,7 @@
       <p> </p>
     {% for coat in coatWardrobe %}
     <input type="radio" name="coatForm" id="coats" value="{{coat.url}}"/>
-    <label for="coats">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</label>
+    <label for="coats">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; </label>
     {% endfor %}
     <br /><br />
     </div>
@@ -101,7 +103,7 @@
       <p> </p>
     {% for jacket in jacketWardrobe %}
     <input type="radio" name="jacketForm" id="jackets" value="{{jacket.url}}"/>
-    <label for="jackets">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</label>
+    <label for="jackets">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; </label>
     {% endfor %}
     <br /><br />
     </div>
@@ -114,7 +116,7 @@
       <p></p>
     {% for dress in dressWardrobe %}
     <input type="radio" name="dressForm" id="dresses" value="{{dress.url}}"/>
-    <label for="dresses">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</label>
+    <label for="dresses">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; </label>
     {% endfor %}
     <br /><br />
     </div>
