@@ -28,6 +28,9 @@
 
     {% for item in favorites %}
       <img class = "img" src= "{{item.topUrl}}" />
+    {% endfor %}
+    <p></p>
+    {% for item in favorites %}
       <img class = "img" src= "{{item.bottomUrl}}" />
     {% endfor %}
 
