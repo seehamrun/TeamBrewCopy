@@ -103,7 +103,7 @@ class GetWeather(webapp2.RequestHandler):
         logging.info("It went through")
 
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
-<<<<<<< HEAD
+
 
         length_cloth=WardrobeSave.length=="length"
         material_cloth = WardrobeSave.materials=="cotton"
@@ -111,8 +111,6 @@ class GetWeather(webapp2.RequestHandler):
             length_cloth=WardrobeSave.length=="short"
         if (temp>50):
             material_cloth=WardrobeSave.length=="wool"
-=======
->>>>>>> 018946f272e7782edc455a4eeb278bc8c280087d
         values={
             "topsWardrobe":WardrobeSave.query().fetch()
         }
