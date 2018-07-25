@@ -12,7 +12,7 @@
   color: gray;
   font-size: 30pt;
   font-weight: 900;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .body{
@@ -33,6 +33,20 @@
 
 .itemContainer{
   border: 1px solid black;
+}
 
 
+#logout {
+  float: right;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+#pic {
+  float: right;
+}
+
+#condition {
+  float: right;
 }
