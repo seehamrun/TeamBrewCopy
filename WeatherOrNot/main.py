@@ -82,6 +82,17 @@ class WardrobePage(webapp2.RequestHandler):
         }
         self.response.write(response_html.render(values))
 
+class FavoritesHandler(webapp2.RequestHandler):
+    def get(self):
+        response_html = jinja_env.get_template("templates/addfavs_page.html")
+        values = {
+            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
+            "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False).fetch(),
+            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False).fetch(),
+            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch(),
+        }
+        self.response.write(response_html.render(values))
+
 
 class TesterHandler(webapp2.RequestHandler):
     def get(self):
@@ -102,5 +113,6 @@ app = webapp2.WSGIApplication([
     ('/wardrobe', WardrobePage),
     ('/add_item', AddClothingHandler),
     ('/suggestion', SuggestionsHandler),
+    ('/add_favorite', FavoritesHandler),
     ("/testing", TesterHandler)
 ], debug=True)
