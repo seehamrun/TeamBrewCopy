@@ -54,7 +54,10 @@ class AddClothingHandler(webapp2.RequestHandler):
 class SuggestionsHandler(webapp2.RequestHandler):
     def get(self):
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
-        self.response.write(response_html.render())
+        values={
+            "topsWardrobe":WardrobeSave.query().fetch()
+        }
+        self.response.write(response_html.render(values))
 
 
 class WardrobePage(webapp2.RequestHandler):
@@ -88,22 +91,22 @@ class GetWeather(webapp2.RequestHandler):
         logging.info("It went through")
 
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
-
-        length_cloth=WardrobeSave.length=="length"
-        material_cloth = WardrobeSave.materials=="cotton"
+        values={
+            "topsWardrobe":WardrobeSave.query().fetch()
+        }
         if (temp<35):
             values={
                 "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
                 "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.materials=="wool", WardrobeSave.materials=="denim", WardrobeSave.materials=="cotton", WardrobeSave.length=="long").fetch(),
                 "coatWardrobe":WardrobeSave.query(WardrobeSave.type=="coat", WardrobeSave.laundry==False).fetch(),
-                "jacketWardrobe":WardrobeSave.query(WadrobeSave.type=="jacket", WardrobeSave.laundry==False).fetch()
+                "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False).fetch()
             }
         elif(temp>35 and temp<=50):
             values={
                 "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
                 "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long").fetch(),
                 "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False).fetch(),
-                "jacketWardrobe":WardrobeSave.query(WadrobeSave.type=="jacket", WardrobeSave.laundry==False).fetch()
+                "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False).fetch()
             }
         elif(temp>50 and temp<=60):
             values={
@@ -121,7 +124,7 @@ class GetWeather(webapp2.RequestHandler):
                 "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.length=="short").fetch(),
                 "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="short").fetch(),
                 "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False).fetch(),
-                "dressWardrobe":WardrobeSave.query(WadrobeSave.type=="dress", WardrobeSave.laundry==False).fetch()
+                "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch()
             }
 
         self.response.write(response_html.render(values))
