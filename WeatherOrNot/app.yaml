@@ -8,6 +8,8 @@ handlers:
   upload: templates/main_page.html
 - url: /static/upload-images.*
   static_dir: static/upload-images
+- url: /static/suggestions_page.*
+  static_dir: static/suggestions_page
 - url: /static.*
   static_dir: static
 - url: /.*
