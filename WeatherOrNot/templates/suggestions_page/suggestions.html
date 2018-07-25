@@ -12,6 +12,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
+    <div id="logout">
+      <p>{{user_nickname}}</p>
+      <a href="{{logoutUrl}}">Log Out</a>
+    </div>
     <h1 id="header"> SUGGESTIONS </h1>
     <nav class="navbar navbar-inverse">
       <ul class="nav navbar-nav">
@@ -34,6 +38,21 @@
       <img class="img" src= "{{pant.url}}" />
     {% endfor %}
     <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+    <h1>COATS</h1>
+    {% for coat in coatWardrobe%}
+      <img class="img" src= "{{coat.url}}" />
+    {% endfor %}
+    <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+    <h1>JACKETS</h1>
+    {% for jacket in jacketWardrobe%}
+      <img class="img" src= "{{jacket.url}}" />
+    {% endfor %}
+    <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+    <h1>SWEATERS</h1>
+    {% for sweater in sweaterWardrobe%}
+      <img class="img" src= "{{sweater.url}}" />
+    {% endfor %}
+    <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
     <h1>SKIRT</h1>
     {% for skirt in skirtWardrobe%}
       <img class="img" src= "{{skirt.url}}" />
@@ -43,6 +62,7 @@
     {% for dress in dressWardrobe%}
       <img class="img" src= "{{dress.url}}" />
     {% endfor %}
+    <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
   </body>
 <!-- <head>
   <title>Our Suggestions</title>

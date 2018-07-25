@@ -1,0 +1,107 @@
+.officialMenu{
+  width: 100%;
+  height: 150px;
+  background-color: white;
+}
+
+h1{
+  padding-top: 20px;
+  text-align: center;
+  font-size: 20px;
+  font-family: Roboto, sans-serif;
+}
+#menu{
+  display: table;
+  margin: 0 auto;
+  padding-top: 25px;
+}
+
+#menu li{
+  list-style: none;
+  display: inline-block;
+}
+
+#menu li a{
+  text-decoration: none;
+  position: relative;
+  color: #313131;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: Roboto, sans-serif;
+  display: block;
+  overflow: hidden;
+  transition: 0.7s all;
+  padding: 14px 10px;
+  text-transform: uppercase;
+}
+
+#menu li a:before{
+  content:'';
+  width:60px;
+  position: absolute;
+  border-bottom: 3px solid;
+  bottom: 0;
+  right: 350px;
+  transition: 0.7s all;
+
+}
+
+#menu li a:hover:before{
+  right: 0;
+}
+
+.centeredImageofHome{
+    width: 100%;
+    height: 400px;
+    overflow:
+}
+.hereIsTheImage {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    padding-top: 100px;
+    text-align: center;
+    color: white;
+    font-size: 60px;
+    font-weight: bold;
+    font-family: Roboto, sans-serif;
+}
+
+.Click {
+    position: absolute;
+    top: 60%;
+    left: 69%;
+    padding-top: 100px;
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    font-weight: normal;
+    font-family: Roboto, sans-serif;
+}
+
+#clothesHangerDisplay {
+  background-image: url("https://wallpapercave.com/wp/wp1866272.jpg");
+
+    clip: rect(335px, auto, auto, auto);
+    display: block;
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: 10px;
+    opacity: 0.8;
+    overflow: hidden;
+}
+
+#whiteBox {
+  position: absolute;
+  top: 40%;
+  left: 42%;
+  clip: rect(0px, 1000px, 100px, 0px);
+  transform: scale(1.5);
+}
