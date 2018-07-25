@@ -89,7 +89,7 @@ class GetWeather(webapp2.RequestHandler):
         logging.info("It went through")
 
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
-        
+
         length_cloth=WardrobeSave.length=="length"
         material_cloth = WardrobeSave.materials=="cotton"
         if (weather=="sunny"):
@@ -124,10 +124,7 @@ app = webapp2.WSGIApplication([
     ('/wardrobe', WardrobePage),
     ('/add_item', AddClothingHandler),
     ('/suggestion', SuggestionsHandler),
-<<<<<<< HEAD
     ('/add_favorite', FavoritesHandler),
-=======
     ('/get_weather', GetWeather),
->>>>>>> 62ce4fadcb8729faa3d89116342a1284401bfcd9
     ("/testing", TesterHandler)
 ], debug=True)
