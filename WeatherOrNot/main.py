@@ -16,12 +16,12 @@ class ZipSave(ndb.Model):
 
 class CalendarSave(ndb.Model):
     user=ndb.StringProperty()
-    urltop=ndb.Stringproperty()
-    urlbottom=ndb.Stringproperty()
-    urlskirt=ndb.Stringproperty()
-    urldress=ndb.Stringproperty()
-    urljacket=ndb.Stringproperty()
-    urlcoat=ndb.Stringproperty()
+    urltop=ndb.StringProperty()
+    urlbottom=ndb.StringProperty()
+    urlskirt=ndb.StringProperty()
+    urldress=ndb.StringProperty()
+    urljacket=ndb.StringProperty()
+    urlcoat=ndb.StringProperty()
 
 class WardrobeSave(ndb.Model):
     url = ndb.StringProperty()
@@ -295,6 +295,6 @@ app = webapp2.WSGIApplication([
     ('/suggestion', SuggestionsHandler),
     ('/add_favorite', FavoritesHandler),
     ('/get_weather', GetWeather),
-    ("/testing", TesterHandler),
+    ('/calendar', CalendarHandler)
     ('/list_favorite', ListFavoritesHandler)
 ], debug=True)
