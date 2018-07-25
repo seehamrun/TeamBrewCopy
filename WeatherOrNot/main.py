@@ -13,6 +13,7 @@ from google.appengine.api import urlfetch
 class ZipSave(ndb.Model):
     nick=ndb.StringProperty()
     zip=ndb.StringProperty()
+
 class WardrobeSave(ndb.Model):
     url = ndb.StringProperty()
     type=ndb.StringProperty()
@@ -145,12 +146,15 @@ class FavoritesHandler(webapp2.RequestHandler):
         self.response.write(response_html.render(values))
 
     def post(self):
-        top = self.request.get('tops')
-        bottom= self.request.get('bottoms')
+        logging.info(self.request.POST)
+        top = self.request.get('topForm')
+        bottom= self.request.get('bottomForm')
         stored_clothing = FavoriteSave(topUrl=top, bottomUrl=bottom)
         stored_clothing.put()
-        response_html = jinja_env.get_template("templates/addfavs_page.html")
-        logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
+        #response_html = jinja_env.get_template("templates/addfavs_page.html")
+        time.sleep(1)
+        #logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
+        self.redirect('/add_favorite')
 
 
 class ListFavoritesHandler(webapp2.RequestHandler):
