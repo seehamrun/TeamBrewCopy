@@ -13,6 +13,7 @@ from google.appengine.api import urlfetch
 class ZipSave(ndb.Model):
     nick=ndb.StringProperty()
     zip=ndb.StringProperty()
+
 class WardrobeSave(ndb.Model):
     url = ndb.StringProperty()
     type=ndb.StringProperty()
@@ -45,6 +46,16 @@ class MainPage(webapp2.RequestHandler):
           'logoutUrl': users.create_logout_url('/')
         }
         return self.response.write(response_html.render(data))
+    def post(self):
+        logging.info(self.request.POST)
+        zipCode = self.request.get('zip')
+        user=users.get_current_user()
+        stored_zip = ZipSave(zip=zipCode, user)
+        stored_zip.put()
+        #response_html = jinja_env.get_template("templates/addfavs_page.html")
+        time.sleep(1)
+        #logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
+        self.redirect('/')
 
 
 class AddClothingHandler(webapp2.RequestHandler):
@@ -101,16 +112,28 @@ class WardrobePage(webapp2.RequestHandler):
             "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
             "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False).fetch(),
             "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False).fetch(),
-            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch()
+            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch(),
+            "laundry":WardrobeSave.query(WardrobeSave.laundry==True).fetch(),
         }
         self.response.write(response_html.render(values))
 
     def post(self):
-        logging.info(self.request.POST.keys())
+        button = None
+        itemKeys = []
+        logging.info(self.request.POST)
         for keys in self.request.POST.keys():
-            DBKey = ndb.Key(urlsafe=keys)
+            if keys == "toWardrobe":
+                button = keys
+            else:
+                itemKeys.append(keys)
+
+        for itemKey in itemKeys:
+            DBKey = ndb.Key(urlsafe=itemKey)
             TheItem = DBKey.get()
-            TheItem.laundry = True
+            if button == "toWardrobe":
+                TheItem.laundry = False
+            else:
+                TheItem.laundry = True
             TheItem.put()
         time.sleep(1)
         self.redirect("/wardrobe")
