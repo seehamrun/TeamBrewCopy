@@ -112,16 +112,28 @@ class WardrobePage(webapp2.RequestHandler):
             "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
             "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False).fetch(),
             "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False).fetch(),
-            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch()
+            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch(),
+            "laundry":WardrobeSave.query(WardrobeSave.laundry==True).fetch(),
         }
         self.response.write(response_html.render(values))
 
     def post(self):
-        logging.info(self.request.POST.keys())
+        button = None
+        itemKeys = []
+        logging.info(self.request.POST)
         for keys in self.request.POST.keys():
-            DBKey = ndb.Key(urlsafe=keys)
+            if keys == "toWardrobe":
+                button = keys
+            else:
+                itemKeys.append(keys)
+
+        for itemKey in itemKeys:
+            DBKey = ndb.Key(urlsafe=itemKey)
             TheItem = DBKey.get()
-            TheItem.laundry = True
+            if button == "toWardrobe":
+                TheItem.laundry = False
+            else:
+                TheItem.laundry = True
             TheItem.put()
         time.sleep(1)
         self.redirect("/wardrobe")
