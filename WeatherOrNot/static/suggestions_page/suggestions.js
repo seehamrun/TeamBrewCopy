@@ -12,7 +12,7 @@ fetch("https://api.worldweatheronline.com/premium/v1/weather.ashx?key=" + weathe
       // condition.innerHTML = "<p>" + currentCondition + "</p>"
       // pic.innerHTML = "<img src='" + data.data.current_condition[0].weatherIconUrl[0].value + "'/>"
 
-      jQuery.get("/suggestion?temp=" + currentTemp + "&condition=" + currentCondition, "&maxtemp=" + currentMaxTemp, "&mintemp=" + currentMinTemp, () => {
+      jQuery.get("/get_weather?temp=" + currentTemp + "&condition=" + "cloudy" + "&maxTemp=" + currentMaxTemp + "&minTemp=" + currentMinTemp, () => {
         alert("Sent")
       })
 
