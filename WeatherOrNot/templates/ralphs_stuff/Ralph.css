@@ -62,11 +62,11 @@ h1{
 
 .center {
     position: absolute;
-    top: 50%;
-    left: 60%;
+    top: 27%;
+    left: 32%;
     padding-top: 100px;
     text-align: center;
-    color: white;
+    color: gray;
     font-size: 60px;
     font-weight: bold;
     font-family: Roboto, sans-serif;
@@ -74,11 +74,11 @@ h1{
 
 .Click {
     position: absolute;
-    top: 60%;
-    left: 69%;
+    top: 43%;
+    left: 42%;
     padding-top: 100px;
     text-align: center;
-    color: white;
+    color: gray;
     font-size: 40px;
     font-weight: normal;
     font-family: Roboto, sans-serif;
@@ -100,8 +100,8 @@ h1{
 
 #whiteBox {
   position: absolute;
-  top: 40%;
+  top: 60%;
   left: 42%;
-  clip: rect(0px, 1000px, 100px, 0px);
-  transform: scale(1.5);
+  clip: rect(0px, 1200px, 100px, 0px);
+  transform: scale(2.7);
 }
