@@ -160,9 +160,42 @@ class FavoritesHandler(webapp2.RequestHandler):
         logging.info(self.request.POST)
         top = self.request.get('topForm')
         bottom= self.request.get('bottomForm')
-        stored_clothing = FavoriteSave(topUrl=top, bottomUrl=bottom)
-        stored_clothing.put()
-        #response_html = jinja_env.get_template("templates/addfavs_page.html")
+        skirt = self.request.get('skirtForm')
+        dress = self.request.get('dressForm')
+        coat = self.request.get('coatForm')
+        jacket = self.request.get('jacketForm')
+        sweater = self.request.get('sweaterForm')
+
+        if(top!="" and bottom!=""):
+            stored_clothing = FavoriteSave(topUrl=top, bottomUrl=bottom)
+            stored_clothing.put()
+        elif(top!="" and skirt!=""):
+            stored_clothing = FavoriteSave(topUrl=top, bottomUrl=skirt)
+            stored_clothing.put()
+        elif(sweater!="" and bottom!=""):
+            stored_clothing = FavoriteSave(topUrl=sweater, bottomUrl=bottom)
+            stored_clothing.put()
+        elif(sweater!="" and skirt!=""):
+            stored_clothing = FavoriteSave(topUrl=sweater, bottomUrl=skirt)
+            stored_clothing.put()
+        elif(coat!="" and bottom!=""):
+            stored_clothing = FavoriteSave(topUrl=coat, bottomUrl=bottom)
+            stored_clothing.put()
+        elif(jacket!="" and bottom!=""):
+            stored_clothing = FavoriteSave(topUrl=jacket, bottomUrl=bottom)
+            stored_clothing.put()
+        else:
+            response = """
+            <html>
+                <head>
+                    <link rel="stylesheet" href="/static/style.css"></link>
+                </head>
+                <body>
+                    <p>This does not work</p>
+                </body>
+            </html>"""
+            return self.response.write(response)
+
         time.sleep(1)
         #logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
         self.redirect('/add_favorite')
