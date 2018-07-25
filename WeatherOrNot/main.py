@@ -83,7 +83,6 @@ class FavoritesHandler(webapp2.RequestHandler):
 class GetWeather(webapp2.RequestHandler):
     def get(self):
         temp = self.request.get("temp")
-        weather = self.request.get("condition")
         maxTemp=self.request.get("maxTemp")
         minTemp=self.request.get("minTemp")
         logging.info("It went through")
@@ -92,16 +91,38 @@ class GetWeather(webapp2.RequestHandler):
 
         length_cloth=WardrobeSave.length=="length"
         material_cloth = WardrobeSave.materials=="cotton"
-        if (weather=="sunny"):
-            length_cloth=WardrobeSave.length=="short"
-        if (temp>50):
-            material_cloth=WardrobeSave.length=="wool"
-        values={
-            "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, length_cloth, material_cloth).fetch(),
-            "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, length_cloth, material_cloth).fetch(),
-            "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False, length_cloth, material_cloth).fetch(),
-            "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False, length_cloth, material_cloth).fetch(),
-        }
+        if (temp<35):
+            values={
+                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
+                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.materials=="wool", WardrobeSave.materials=="denim", WardrobeSave.materials=="cotton", WardrobeSave.length=="long").fetch(),
+                "coatWardrobe":WardrobeSave.query(WardrobeSave.type=="coat", WardrobeSave.laundry==False).fetch(),
+                "jacketWardrobe":WardrobeSave.query(WadrobeSave.type=="jacket", WardrobeSave.laundry==False).fetch()
+            }
+        elif(temp>35 and temp<=50):
+            values={
+                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
+                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long").fetch(),
+                "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False).fetch(),
+                "jacketWardrobe":WardrobeSave.query(WadrobeSave.type=="jacket", WardrobeSave.laundry==False).fetch()
+            }
+        elif(temp>50 and temp<=60):
+            values={
+                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
+                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long").fetch(),
+                "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False).fetch()
+            }
+        elif(temp>60 and temp<=70):
+            values={
+                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.length=="short").fetch(),
+                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long").fetch(),
+            }
+        else:
+            values={
+                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.length=="short").fetch(),
+                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="short").fetch(),
+                "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False).fetch(),
+                "dressWardrobe":WardrobeSave.query(WadrobeSave.type=="dress", WardrobeSave.laundry==False).fetch()
+            }
 
         self.response.write(response_html.render(values))
 
