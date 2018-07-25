@@ -35,7 +35,6 @@
   border: 1px solid black;
 }
 
-
 #logout {
   float: right;
   background-color: rgba(255, 255, 255, 0.5);
@@ -45,8 +44,24 @@
 
 #pic {
   float: right;
+  border-right: 10px;
 }
 
 #condition {
   float: right;
+}
+
+#twitter {
+  height: 8%;
+}
+
+#bottomTemp {
+  text-align: center;
+  font-size: 200pt;
+  font-size: 200pt;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 480px;
+  margin: auto;
+  font-family: monospace;
 }

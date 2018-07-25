@@ -6,6 +6,7 @@ fetch("https://api.worldweatheronline.com/premium/v1/weather.ashx?key=" + weathe
       currentCondition = data.data.current_condition[0].weatherDesc[0].value
       temp.innerHTML = "<h1>The current weather is " + currentTemp + "F</h1>"
       pic.innerHTML = "<img src='" + data.data.current_condition[0].weatherIconUrl[0].value + "'/>"
+      bottomTemp.innerHTML = "<p>" + currentTemp + "F</p>"
 
       jQuery.get("/?temp=" + currentTemp + "&condition=" + currentCondition, () => {
         //alert("Sent")
