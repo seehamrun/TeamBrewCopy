@@ -4,7 +4,6 @@ import jinja2
 import os
 import json
 
-import api
 import time
 
 from google.appengine.api import users
