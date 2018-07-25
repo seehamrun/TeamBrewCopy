@@ -46,6 +46,16 @@ class MainPage(webapp2.RequestHandler):
           'logoutUrl': users.create_logout_url('/')
         }
         return self.response.write(response_html.render(data))
+    def post(self):
+        logging.info(self.request.POST)
+        zipCode = self.request.get('zip')
+        user=users.get_current_user()
+        stored_zip = ZipSave(zip=zipCode, user)
+        stored_zip.put()
+        #response_html = jinja_env.get_template("templates/addfavs_page.html")
+        time.sleep(1)
+        #logging.info('server saw a request to add %s to list of favorites' % (requestUrl))
+        self.redirect('/')
 
 
 class AddClothingHandler(webapp2.RequestHandler):
