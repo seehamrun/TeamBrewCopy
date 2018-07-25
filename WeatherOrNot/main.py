@@ -105,6 +105,16 @@ class WardrobePage(webapp2.RequestHandler):
         }
         self.response.write(response_html.render(values))
 
+    def post(self):
+        logging.info(self.request.POST.keys())
+        for keys in self.request.POST.keys():
+            DBKey = ndb.Key(urlsafe=keys)
+            TheItem = DBKey.get()
+            TheItem.laundry = True
+            TheItem.put()
+        time.sleep(1)
+        self.redirect("/wardrobe")
+
 class FavoritesHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -121,23 +131,6 @@ class FavoritesHandler(webapp2.RequestHandler):
             "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False).fetch()
         }
         self.response.write(response_html.render(values))
-    def post(self):
-        logging.info(self.request.POST.keys())
-        for keys in self.request.POST.keys():
-            DBKey = ndb.Key(urlsafe=keys)
-            TheItem = DBKey.get()
-            TheItem.laundry = True
-            TheItem.put()
-        time.sleep(1)
-        self.redirect("/wardrobe")
-
-
-
-        self.response.headers['Content-Type'] = 'text/html'
-        return self.response.write(response_html.render())
-        self.response.headers['Content-Type'] = 'text/html'
-        top = self.request.get('tops')
-        bottom= self.request.get('bottoms')
 
     def post(self):
         top = self.request.get('tops')
