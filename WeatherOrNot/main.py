@@ -42,6 +42,10 @@ class MainPage(webapp2.RequestHandler):
 
 class AddClothingHandler(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        logging.info('current user is: %s' % (user.nickname()))
+        response_html = jinja_env.get_template("templates/main_page.html")
+
         response_html = jinja_env.get_template("templates/upload-images/index.html")
         self.response.headers['Content-Type'] = 'text/html'
         return self.response.write(response_html.render())
@@ -65,6 +69,10 @@ class AddClothingHandler(webapp2.RequestHandler):
 
 class SuggestionsHandler(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        logging.info('current user is: %s' % (user.nickname()))
+        response_html = jinja_env.get_template("templates/main_page.html")
+
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
         values={
             "topsWardrobe":WardrobeSave.query().fetch()
@@ -74,6 +82,10 @@ class SuggestionsHandler(webapp2.RequestHandler):
 
 class WardrobePage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        logging.info('current user is: %s' % (user.nickname()))
+        response_html = jinja_env.get_template("templates/main_page.html")
+
         response_html = jinja_env.get_template("templates/wardrobe_page.html")
         values = {
             "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
@@ -85,6 +97,10 @@ class WardrobePage(webapp2.RequestHandler):
 
 class FavoritesHandler(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        logging.info('current user is: %s' % (user.nickname()))
+        response_html = jinja_env.get_template("templates/main_page.html")
+
         response_html = jinja_env.get_template("templates/addfavs_page.html")
         values = {
             "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False).fetch(),
@@ -97,6 +113,10 @@ class FavoritesHandler(webapp2.RequestHandler):
 
 class GetWeather(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        logging.info('current user is: %s' % (user.nickname()))
+        response_html = jinja_env.get_template("templates/main_page.html")
+
         temp = self.request.get("temp")
         maxTemp=self.request.get("maxTemp")
         minTemp=self.request.get("minTemp")
@@ -152,6 +172,10 @@ class GetWeather(webapp2.RequestHandler):
 
 class TesterHandler(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        logging.info('current user is: %s' % (user.nickname()))
+        response_html = jinja_env.get_template("templates/main_page.html")
+
         response_html = jinja_env.get_template("templates/weather-test.html")
         self.response.write(response_html.render())
         temp = self.request.get("temp")
