@@ -329,11 +329,24 @@ class CalendarHandler(webapp2.RequestHandler):
         }
         self.response.write(response_html.render(values))
 
+class DeleteWardrobeHandler(webapp2.RequestHandler):
+    def get(self):
+        url_to_delete = self.request.get('url_id')
+        response_html = jinja_env.get_template("templates/wardrobe_page.html")
+        key = ndb.Key(urlsafe=url_to_delete)
+        the_url = key.get()
+        data = {
+            "url": the_url.name,
+            "url_id": the_url.key.urlsafe()
+        }
+        self.response.write(response_html.render(data))
 
-def weather(temp):
-    logging.info("This is temp")
-    logging.info(temp)
-
+    def post(self):
+        key = ndb.Key(urlsafe=self.request.get('url_id'))
+        # Here you *could* look up the key to get the actual entry. This is
+        # useful if you want to do something with the dog before or after you
+        # delete because you can't lookup after you call delete on the key
+        key.delete()
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -343,5 +356,6 @@ app = webapp2.WSGIApplication([
     ('/add_favorite', FavoritesHandler),
     ('/get_weather', GetWeather),
     ('/calendar', CalendarHandler),
+    ('/delete_wardrobe', DeleteWardrobeHandler),
     ('/list_favorite', ListFavoritesHandler)
 ], debug=True)
