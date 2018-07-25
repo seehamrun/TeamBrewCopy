@@ -1,7 +1,18 @@
-.officialMenu{
+.topBar{
+  margin: 0;
+  padding: 0;
+  background-color: #091929;
   width: 100%;
-  height: 150px;
+  height: 28px;
+
+}
+.officialMenu{
+  margin: 0;
+  padding-top: 0;
+  width: 100%;
+  height: 250px;
   background-color: white;
+  padding-bottom: 0;
 }
 
 h1{
@@ -104,4 +115,10 @@ h1{
   left: 42%;
   clip: rect(0px, 1200px, 100px, 0px);
   transform: scale(2.7);
+}
+
+.belowPicture{
+  padding-top: 0;
+  height: 500px;
+  width: 100%;
 }
