@@ -258,7 +258,7 @@ class FavoritesHandler(webapp2.RequestHandler):
         top = self.request.get('topForm')
         bottom= self.request.get('bottomForm')
         skirt = self.request.get('skirtForm')
-        dress = self.request.g7iiet('dressForm')
+        dress = self.request.get('dressForm')
         coat = self.request.get('coatForm')
         jacket = self.request.get('jacketForm')
         sweater = self.request.get('sweaterForm')
@@ -351,7 +351,25 @@ class LaundryHandler(webapp2.RequestHandler):
             "laundry":WardrobeSave.query(WardrobeSave.laundry==True).fetch(),
         }
         self.response.write(response_html.render(values))
+    def post(self):
+        button = None
+        itemKeys = []
+        logging.info(self.request.POST)
+        for keys in self.request.POST.keys():
+            if keys=="toWardrobe":
+                button = keys
+            else:
+                itemKeys.append(keys)
 
+        for itemKey in itemKeys:
+            DBKey = ndb.Key(urlsafe=itemKey)
+            TheItem = DBKey.get()
+            if button == "toWardrobe":
+                TheItem.laundry = False
+                TheItem.put()
+
+        time.sleep(1)
+        self.redirect("/add_favorite")
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/add_item', AddClothingHandler),
