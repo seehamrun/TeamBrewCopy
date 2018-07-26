@@ -45,8 +45,10 @@
     {% for outfit in favorites%}
     <tr>
       <td>{{outfit.date}}</td>
-      <td>{{outfit.clothing}}</td>
+      <td><img class="img" src="{{outfit.urltop}}"/></td>
+      <td><img class="img" src="{{outfit.urlbottom}}"/></td>
     </tr>
     {% endfor %}
+  </table>
 </body>
 </html>
