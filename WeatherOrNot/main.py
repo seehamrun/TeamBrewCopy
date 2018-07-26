@@ -51,10 +51,7 @@ class MainPage(webapp2.RequestHandler):
         response_html = jinja_env.get_template("templates/main_page.html")
 
         temp = self.request.get("temp")
-<<<<<<< HEAD
 
-=======
->>>>>>> 1bade320742d3593185e1db081004fa221b95099
 
         data = {
           'user_nickname': user.nickname(),
