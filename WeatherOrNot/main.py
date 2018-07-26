@@ -44,14 +44,15 @@ class MainPage(webapp2.RequestHandler):
         logging.info('current user is: %s' % (user.nickname()))
         response_html = jinja_env.get_template("templates/main_page.html")
 
-        temp = self.request.get("temp")
-        weather(temp)
+        # temp = self.request.get("temp")
+        # weather(temp)
 
         data = {
           'user_nickname': user.nickname(),
           'logoutUrl': users.create_logout_url('/')
         }
         return self.response.write(response_html.render(data))
+
     def post(self):
         logging.info(self.request.POST)
         zipCode = self.request.get('zip')
@@ -295,6 +296,6 @@ app = webapp2.WSGIApplication([
     ('/add_favorite', FavoritesHandler),
     ('/get_weather', GetWeather),
     ('/calendar', CalendarHandler),
-    ('/delete_wardrobe', DeleteWardrobeHandler),
+    # ('/delete_wardrobe', DeleteWardrobeHandler),
     ('/list_favorite', ListFavoritesHandler)
 ], debug=True)
