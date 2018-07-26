@@ -72,11 +72,14 @@
             xhttp = null;
         },
         createDragZone: function () {
-            var p2, input;
-                p2 = this.createEls('p', {}, 'Click here to select image');
+            var p1, p2, input;
+
+                p1 = this.createEls('p', {}, 'Drop Image File Here');
+                p2 = this.createEls('p', {}, 'Or click here to select image');
             input = this.createEls('input', {type: 'file', className: 'input', accept: 'image/*'});
 
             Array.prototype.forEach.call(this.info, function (zone) {
+                zone.appendChild(p1);
                 zone.appendChild(p2);
             }.bind(this));
             Array.prototype.forEach.call(this.dropzone, function (zone) {

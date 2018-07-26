@@ -10,10 +10,11 @@ from google.appengine.api import urlfetch
 
 class ZipSave(ndb.Model):
     user=ndb.StringProperty()
-    zip=ndb.StringProperty()
+    zip=ndb.IntegerProperty()
 
 class CalendarSave(ndb.Model):
     user=ndb.StringProperty()
+    date=ndb.StringProperty()
     urltop=ndb.StringProperty()
     urlbottom=ndb.StringProperty()
     # urlskirt=ndb.StringProperty()
@@ -94,7 +95,6 @@ class WardrobePage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         logging.info('current user is: %s' % (user.nickname()))
-        response_html = jinja_env.get_template("templates/main_page.html")
 
         response_html = jinja_env.get_template("templates/wardrobe_page.html")
         values = {
@@ -296,6 +296,5 @@ app = webapp2.WSGIApplication([
     ('/add_favorite', FavoritesHandler),
     ('/get_weather', GetWeather),
     ('/calendar', CalendarHandler),
-    # ('/delete_wardrobe', DeleteWardrobeHandler),
     ('/list_favorite', ListFavoritesHandler)
 ], debug=True)
