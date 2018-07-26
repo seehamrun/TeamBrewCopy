@@ -296,9 +296,5 @@ app = webapp2.WSGIApplication([
     ('/add_favorite', FavoritesHandler),
     ('/get_weather', GetWeather),
     ('/calendar', CalendarHandler),
-<<<<<<< HEAD
-=======
-    # ('/delete_wardrobe', DeleteWardrobeHandler),
->>>>>>> d16aed7656c8aab3684ba3990bba84e579aacb33
     ('/list_favorite', ListFavoritesHandler)
 ], debug=True)
