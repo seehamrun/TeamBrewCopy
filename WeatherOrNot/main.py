@@ -51,7 +51,10 @@ class MainPage(webapp2.RequestHandler):
         response_html = jinja_env.get_template("templates/main_page.html")
 
         temp = self.request.get("temp")
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1bade320742d3593185e1db081004fa221b95099
 
         data = {
           'user_nickname': user.nickname(),
@@ -203,7 +206,7 @@ class FavoritesHandler(webapp2.RequestHandler):
         itemKeys = []
         logging.info(self.request.POST)
         for keys in self.request.POST.keys():
-            if keys == "laundry" or keys=="delete" or keys=="toWardrobe" or keys=="worn":
+            if keys == "laundry" or keys=="delete" or keys=="toWardrobe":
                 button = keys
             else:
                 itemKeys.append(keys)
@@ -220,12 +223,14 @@ class FavoritesHandler(webapp2.RequestHandler):
                 TheItem.laundry = True
                 TheItem.put()
 
+        time.sleep(1)
+        self.redirect("/add_favorite")
 
         logging.info(self.request.POST)
         top = self.request.get('topForm')
         bottom= self.request.get('bottomForm')
         skirt = self.request.get('skirtForm')
-        dress = self.request.get('dressForm')
+        dress = self.request.g7iiet('dressForm')
         coat = self.request.get('coatForm')
         jacket = self.request.get('jacketForm')
         sweater = self.request.get('sweaterForm')
@@ -318,25 +323,6 @@ class LaundryHandler(webapp2.RequestHandler):
             "laundry":WardrobeSave.query(WardrobeSave.laundry==True).fetch(),
         }
         self.response.write(response_html.render(values))
-    def post(self):
-        button = None
-        itemKeys = []
-        logging.info(self.request.POST)
-        for keys in self.request.POST.keys():
-            if keys=="toWardrobe":
-                button = keys
-            else:
-                itemKeys.append(keys)
-
-        for itemKey in itemKeys:
-            DBKey = ndb.Key(urlsafe=itemKey)
-            TheItem = DBKey.get()
-            if button == "toWardrobe":
-                TheItem.laundry = False
-                TheItem.put()
-
-        time.sleep(1)
-        self.redirect("/add_favorite")
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
