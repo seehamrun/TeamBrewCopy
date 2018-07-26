@@ -12,26 +12,30 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body background="https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/D8qa-2E/rainy-stormy-darkness-wet-weather-background-depressed-sad-background_bzxjr4x7h__F0000.png">
-    <div id="logout">
-      <p>{{user_nickname}}</p>
+    <nav class="navbar navbar-inverse">
+      <ul class = "nav navbar-nav">
+        <li><h1 id="headerz">Weather or Not</h1></li>
+        <li><a href="http://twitter.com/?status=My outfit is faab!"><img class="img2" src="http://www.anthonysgulfport.com/wp-content/uploads/2014/09/twitter-icon-300x300.png" id="twitter"/></a></li>
+        <li><a href="https://www.facebook.com/share.php?u="><img class="img2" src="https://seeklogo.com/images/F/facebook-icon-logo-C61047A9E7-seeklogo.com.png" id="facebook"/></a></li>
+        <li><a href="https://www.instagram.com"><img class="img2" src="https://instagram-brand.com/wp-content/uploads/2016/11/app-icon2.png" id="instagram"/></a></li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li id="nav"><a href="/">Home</a></li>
+        <li id="nav"><a href="/wardrobe">Wardrobe</a></li>
+        <li id="nav"><a href="/add_item">Add to Wardrobe</a></li>
+        <li id="nav"><a href="/suggestion">Suggestions</a></li>
+        <li id="nav"><a href="/add_favorite">Add Favorite Outfits</a></li>
+        <li id="nav"><a href="/list_favorite">Favorites!</a></li>
+        <li id="nav"><a href="/calendar">History</a></li>
+        <li> <form method="post" id="nav"><input type="text" name="zip" id = "zip" value="zip code"><input type="submit" id = "submit" value="Submit"></form></li>
+      </ul>
+    </nav>
+
+    <div id="logout" id="nav">
+      <p id="nav">{{user_nickname}}</p>
       <a href="{{logoutUrl}}">Log Out</a>
     </div>
-    <h1 id="header"> SUGGESTIONS </h1>
-    <nav class="navbar navbar-inverse">
-    <ul class="nav navbar-nav">
-      <li id="nav"><a href="/">Home</a></li>
-      <li id="nav"><a href="/wardrobe">Wardrobe</a></li>
-      <li id="nav"><a href="/add_item">Add Item to Wardrobe</a></li>
-      <li id="nav"><a href="/suggestion">Suggestions</a></li>
-      <li id="nav"><a href="/add_favorite">Add Favorite Outfits!</a></li>
-      <li id="nav"><a href="/list_favorite">Favorites!</a></li>
-      <li id="nav"><a href="/calendar">History</a></li>
-      <li id="nav"> <form method="post" id="nav">Zip Code:<input type="text" name="zip" id = "zip"><input type="submit" id = "submit" value="Submit"></form></li>
-      <li>><a href="http://twitter.com/?status=My outfit is faab!"><img class="img2" src="http://www.anthonysgulfport.com/wp-content/uploads/2014/09/twitter-icon-300x300.png" id="twitter"/></a></li>
-      <li><a href="https://www.facebook.com/share.php?u="><img class="img2" src="https://seeklogo.com/images/F/facebook-icon-logo-C61047A9E7-seeklogo.com.png" id="facebook"/></a></li>
-      <li><a href="https://www.instagram.com"><img class="img2" src="https://instagram-brand.com/wp-content/uploads/2016/11/app-icon2.png" id="instagram"/></a></li>
-    </ul>
-    </nav>
+    
     <h1>TOPS</h1>
     {% for shirt in topsWardrobe %}
       <img class = "img" src= "{{shirt.url}}" />
