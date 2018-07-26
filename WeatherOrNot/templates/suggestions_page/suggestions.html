@@ -18,11 +18,11 @@
       </ul>
       <ul class="nav navbar-nav">
         <li id="nav"><a href="/">Home</a></li>
-        <li id="nav"><a href="/wardrobe">Wardrobe</a></li>
+        <li id="nav"><a href="/add_favorite">Wardrobe</a></li>
         <li id="nav"><a href="/add_item">Add to Wardrobe</a></li>
         <li id="nav"><a href="/suggestion">Suggestions</a></li>
-        <li id="nav"><a href="/add_favorite">Add Favorite Outfits</a></li>
-        <li id="nav"><a href="/list_favorite">Favorites!</a></li>
+        <li id="nav"><a href="/laundry">Laundry</a></li>
+        <li id="nav"><a href="/list_favorite">Favorites</a></li>
         <li id="nav"><a href="/calendar">History</a></li>
         <li><a href="http://twitter.com/?status=My outfit is faab!"><img class="img2" src="http://www.anthonysgulfport.com/wp-content/uploads/2014/09/twitter-icon-300x300.png" id="twitter"/></a></li>
         <li><a href="https://www.facebook.com/share.php?u="><img class="img2" src="https://seeklogo.com/images/F/facebook-icon-logo-C61047A9E7-seeklogo.com.png" id="facebook"/></a></li>
@@ -36,39 +36,25 @@
     </div>
 
     <h1>TOPS</h1>
-    {% for shirt in topsWardrobe %}
-      <img class = "img" src= "{{shirt.url}}" />
-    {% endfor %}
+      <div id="tops"></div>
     <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
     <h1>BOTTOMS</h1>
-    {% for pant in bottomWardrobe%}
-      <img class="img" src= "{{pant.url}}" />
-    {% endfor %}
+      <div id="bottoms"></div>
     <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
     <h1>COATS</h1>
-    {% for coat in coatWardrobe%}
-      <img class="img" src= "{{coat.url}}" />
-    {% endfor %}
+      <div id="coats"></div>
     <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
     <h1>JACKETS</h1>
-    {% for jacket in jacketWardrobe%}
-      <img class="img" src= "{{jacket.url}}" />
-    {% endfor %}
+      <div id="jackets"></div>
     <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
     <h1>SWEATERS</h1>
-    {% for sweater in sweaterWardrobe%}
-      <img class="img" src= "{{sweater.url}}" />
-    {% endfor %}
+      <div id="sweaters"></div>
     <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
-    <h1>SKIRT</h1>
-    {% for skirt in skirtWardrobe%}
-      <img class="img" src= "{{skirt.url}}" />
-    {% endfor %}
+    <h1>SKIRTS</h1>
+      <div id="skirts"></div>
     <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
     <h1>DRESSSES</h1>
-    {% for dress in dressWardrobe%}
-      <img class="img" src= "{{dress.url}}" />
-    {% endfor %}
+      <div id="dresses"></div>
     <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
   </body>
 <!-- <head>
