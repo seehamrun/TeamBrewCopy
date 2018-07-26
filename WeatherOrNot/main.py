@@ -44,6 +44,14 @@ jinja_env = jinja2.Environment(
     autoescape=True)
 
 
+def getPicture(condition):
+    if condition == "cloudy":
+        return "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/NzxWBFh5eikpxgra9/videoblocks-blue-cloud-in-sky-at-sunny-weather_hwfd72vw_thumbnail-full01.png"
+    elif condition == "rainy":
+        return "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/D8qa-2E/rainy-stormy-darkness-wet-weather-background-depressed-sad-background_bzxjr4x7h__F0000.png"
+
+
+
 class MainPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -52,12 +60,18 @@ class MainPage(webapp2.RequestHandler):
 
         temp = self.request.get("temp")
 
+        condition = self.request.get("condition")
+        condition = "cloudy"
 
         data = {
           'user_nickname': user.nickname(),
           'logoutUrl': users.create_logout_url('/')
         }
+
+        data["background_url"] = getPicture(condition)
+
         return self.response.write(response_html.render(data))
+
     def post(self):
         logging.info(self.request.POST)
         zipCode = self.request.get('zip')
@@ -140,7 +154,9 @@ class GetWeather(webapp2.RequestHandler):
                 "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
                 "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.materials=="wool", WardrobeSave.materials=="denim", WardrobeSave.materials=="cotton", WardrobeSave.length=="long", WardrobeSave.user==user.nickname().nickname).fetch(),
                 "coatWardrobe":WardrobeSave.query(WardrobeSave.type=="coat", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-                "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
+                "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch().laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+                "skirt":[],
+                "dress":[]
             }
         elif(temp<=50):
             values={
@@ -149,7 +165,10 @@ class GetWeather(webapp2.RequestHandler):
                 "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
                 "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long", WardrobeSave.user==user.nickname()).fetch(),
                 "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-                "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
+                "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+                "skirt":[],
+                "dress":[],
+                "coat":[]
             }
         elif(temp<=60):
             values={
@@ -157,14 +176,23 @@ class GetWeather(webapp2.RequestHandler):
                 'logoutUrl': users.create_logout_url('/'),
                 "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
                 "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long", WardrobeSave.user==user.nickname()).fetch(),
-                "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
+                "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch().laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+                "jacket":[],
+                "coat":[],
+                "dress":[],
+                "skirt":[]
             }
         elif(temp<=70):
             values={
                 'user_nickname': user.nickname(),
                 'logoutUrl': users.create_logout_url('/'),
                 "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.length=="short", WardrobeSave.user==user.nickname()).fetch(),
-                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long", WardrobeSave.user==user.nickname()).fetch()
+                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long", WardrobeSave.user==user.nickname()).fetch()     "pants":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long", WardrobeSave.user==user.nickname()).fetch(),
+                "sweater":[],
+                "jacket":[],
+                "coat":[],
+                "dress":[],
+                "skirt":[]
             }
         else:
             values={
@@ -173,7 +201,10 @@ class GetWeather(webapp2.RequestHandler):
                 "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.length=="short", WardrobeSave.user==user.nickname()).fetch(),
                 "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="short", WardrobeSave.user==user.nickname()).fetch(),
                 "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-                "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
+                "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+                "jacket":[],
+                "coat":[],
+                "sweater":[]
             }
 
         return self.response.write(response_html.render(values))
