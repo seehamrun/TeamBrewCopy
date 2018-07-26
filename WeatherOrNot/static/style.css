@@ -7,13 +7,31 @@
     background-size:     cover;
 }
 
-#header{
-  font-family: Luminari, fantasy;
-  color: gray;
-  font-size: 30pt;
+#headerz{
+  font-size:30px;
   font-weight: 900;
   margin-left: 10px;
+  font-family:Futura;
+  color:white;
 }
+#header{
+  font-size:30px;
+  font-weight: 900;
+  margin-left: 10px;
+  font-family:Futura;
+}
+#submit{
+  color:black;
+}
+#zip{
+  color:black;
+}
+#nav{
+  font-family:Futura;
+  color:white;
+  font-size:18px;
+}
+
 
 #head{
   color:red;
@@ -40,7 +58,6 @@
   border: 1px solid black;
 }
 
-
 #logout {
   float: right;
   background-color: rgba(255, 255, 255, 0.5);
@@ -50,8 +67,26 @@
 
 #pic {
   float: right;
+  border-right: 10px;
+  border-radius: 5px;
 }
 
 #condition {
   float: right;
+}
+
+/* #twitter {
+  height: 8%;
+} */
+
+#bottomTemp {
+  text-align: center;
+  font-size: 200pt;
+  font-size: 200pt;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 480px;
+  margin: auto;
+  font-family: monospace;
+  border-radius: 25px;
 }
