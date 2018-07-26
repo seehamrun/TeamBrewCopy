@@ -85,13 +85,53 @@
       </span>
       {% endfor %}
       <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+    </div>
+
+    <p>Sweaters:</p>
+    <div>
+      {% for sweater in sweaterWardrobe %}
+      <span class='itemContainer'>
+        Checkbox: <input type="checkbox" id="myCheck" name="{{sweater.key.urlsafe()}}">
+        <img class = "img" src = "{{sweater.url}}" width="500" height="375" />
+
+      </span>
+      {% endfor %}
+      <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+    </div>
+
+    <p>Jackets:</p>
+    <div>
+      {% for jacket in jacketWardrobe %}
+      <span class='itemContainer'>
+        Checkbox: <input type="checkbox" id="myCheck" name="{{jacket.key.urlsafe()}}">
+        <img class = "img" src = "{{jacket.url}}" width="500" height="375" />
+
+      </span>
+      {% endfor %}
+      <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+    </div>
+
+
+    <p>Coats:</p>
+    <div>
+      {% for coat in coatWardrobe %}
+      <span class='itemContainer'>
+        Checkbox: <input type="checkbox" id="myCheck" name="{{coat.key.urlsafe()}}">
+        <img class = "img" src = "{{coat.url}}" width="500" height="375" />
+      </span>
+      {% endfor %}
+      <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+    </div>
+
+
+
       <input type="submit" value="Send to Laundry" name = "toLaundry">
       <input type = "submit" value = "Delete Item" name = "deleteClothing">
     </form>
     </div>
 
     <h1 class='laundryWords'>
-      Stuff below this is laundry
+      Laundry is Below
     </h1>
 
     <div>

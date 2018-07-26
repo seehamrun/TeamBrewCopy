@@ -34,12 +34,8 @@
     </div>
 
 
-    {% for item in favorites %}
-      <img class = "img" src= "{{item.topUrl}}" />
-    {% endfor %}
-    <p></p>
-    {% for item in favorites %}
-      <img class = "img" src= "{{item.bottomUrl}}" />
+    {% for item in laundry %}
+      <img class = "img" src= "{{item.url}}" />
     {% endfor %}
 
   </body>
