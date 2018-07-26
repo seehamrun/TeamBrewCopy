@@ -1,0 +1,24 @@
+<?xml version="1.0"?><svg width="305.1904" height="335.72183" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <filter height="5.636147" y="-2.318073" width="1.249503" x="-0.124752" id="filter7191">
+   <feGaussianBlur id="feGaussianBlur7193" stdDeviation="13.643294"/>
+  </filter>
+  <linearGradient id="linearGradient6845">
+   <stop stop-color="#686868" offset="0" id="stop6847"/>
+   <stop stop-color="#e4d4d4" stop-opacity="0.498039" id="stop6849" offset="1"/>
+   <stop stop-color="#686868" stop-opacity="0" offset="1" id="stop6851"/>
+  </linearGradient>
+  <linearGradient y2="0.500005" x2="-0.038455" y1="-0.636535" x1="0.633891" id="svg_1" xlink:href="#linearGradient6845"/>
+ </defs>
+ <metadata id="metadata4">image/svg+xml</metadata>
+ <g>
+  <title>Layer 1</title>
+  <path fill="#ffffff" fill-rule="evenodd" stroke="#000000" stroke-width="3.286101" stroke-linecap="round" stroke-miterlimit="4" id="path11675" d="m165.813446,145.539612c-1.468567,-0.03894 -2.847961,0.702759 -3.625427,1.949219c-0.777466,1.246521 -0.836731,2.811523 -0.155823,4.113281c0,0 46.708374,93.369324 63,132.25l0,0.03125c0,0 6.485748,16.0448 0.84375,28.0625c-2.623413,5.587891 -10.570831,12.356384 -19.375,14.65625c-8.804169,2.299866 -18.007111,0.947388 -25.65625,-8.875c-0.891296,-1.22113 -2.376923,-1.859924 -3.876312,-1.666687c-1.49942,0.193176 -2.774597,1.187683 -3.327209,2.59491c-0.552643,1.407166 -0.294983,3.003662 0.672272,4.165527c9.533234,12.24176 23.039948,14.717773 34.28125,11.78125c11.241302,-2.936523 20.71344,-10.49176 24.78125,-19.15625c7.740326,-16.487244 -0.75,-34.84375 -0.75,-34.84375c-16.641846,-39.716492 -63.1875,-132.71875 -63.1875,-132.71875c-0.673798,-1.398682 -2.072998,-2.303345 -3.625,-2.34375l0,0z"/>
+  <path fill="url(#svg_1)" stroke="#000000" stroke-width="0.423" stroke-linecap="round" stroke-miterlimit="4" stroke-dashoffset="0" d="m90.573082,17.367538" id="path11677"/>
+  <path fill="#ffffff" stroke="#000000" stroke-width="2.54494" stroke-linecap="round" stroke-miterlimit="4" stroke-dashoffset="0" id="path11679" d="m17.06987,229.59021c-38.141159,-79.170044 -4.842346,-174.379181 74.327713,-212.520325c79.170044,-38.141174 174.379181,-4.842346 212.520355,74.327698c0,0 0,0 0,0c-28.567932,1.845581 -38.535583,5.740417 -57.915771,26.636414c-29.42276,0.073181 -59.060577,20.567627 -79.384674,39.506592c-28.783325,1.398865 -63.828033,18.507507 -83.430847,38.941956c-29.104874,0.732117 -47.512299,10.603088 -66.116776,33.107666z"/>
+  <path fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="2.266198" stroke-miterlimit="4" stroke-dashoffset="0" id="path11681" d="m82.979919,196.022461c-33.76088,-67.305725 -37.049698,-108.833618 9.143616,-178.673798"/>
+  <path fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="2.2806" stroke-miterlimit="4" stroke-dashoffset="0" d="m243.851349,116.324402c-31.806274,-51.326355 -54.579285,-93.094604 -152.054871,-101.740356" id="path11683"/>
+  <path fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="2.295992" stroke-miterlimit="4" stroke-dashoffset="0" id="path11685" d="m166.94754,156.996399c-33.702606,-60.825684 -47.464966,-74.879761 -73.486664,-142.284149"/>
+  <path fill="#cccccc" stroke="#000000" stroke-width="1.909842" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="4" stroke-dashoffset="0" filter="url(#filter7191)" id="path7152" d="m216.001846,329.248657c-5.930984,2.968781 -16.261566,0.876221 -16.927933,0.713959c-6.72467,-1.637512 6.487305,0.783478 14.918259,-1.113861c6.470718,-1.456207 14.846191,-15.922913 15.49939,-15.713989c0.653259,0.208954 -7.558716,13.145111 -13.489716,16.113892z"/>
+ </g>
+</svg>

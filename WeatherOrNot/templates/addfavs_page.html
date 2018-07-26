@@ -1,5 +1,6 @@
 <html>
   <head>
+    <link rel="shortcut icon" href="http://www.free-icons-download.net/images/sun-icon-47359.png">
     <script src="/static/addfavs_page.js"></script>
     <title>Wardrobe</title>
     <link rel="stylesheet" href="/static/style.css"></link>
@@ -38,6 +39,7 @@
 <button id = "worn"> I wore this today! </button>
 <input type = "submit" value="Send to Laundry" name="laundry">
 <input type = "submit" value = "Delete" name="delete">
+<div id = "portraitbox">
     <p>Tops:</p>
       <div>
         {% for top in topsWardrobe %}
@@ -55,6 +57,7 @@
       {% endfor %}
       <br /><br />
     </div>
+  </div>
 
     <p>Bottoms:</p>
     <div>
@@ -145,7 +148,7 @@
     {% endfor %}
     <br /><br />
     </div>
-
+<div id = "portraitbox">
     <p>Dresses:</p>
     <div>
       {% for dress in dressWardrobe %}
@@ -163,6 +166,7 @@
     {% endfor %}
     <br /><br />
     </div>
+  </div>
 </form>
 
   </body>

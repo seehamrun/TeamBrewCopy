@@ -80,7 +80,9 @@ body.loading .loading-modal {
 .img {
     width: 100%;
 }
-
+#portraitbox{
+  background-color:#5760b3;
+}
 #image_wrap {
     /* dimensions */
     width:700px;

@@ -59,9 +59,17 @@ class MainPage(webapp2.RequestHandler):
         response_html = jinja_env.get_template("templates/main_page.html")
 
         temp = self.request.get("temp")
+<<<<<<< HEAD
         condition = self.request.get("condition")
         # weather(temp)
         condition = "cloudy"
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 1bade320742d3593185e1db081004fa221b95099
+
+>>>>>>> 6f8c2f4edc3b33c9758017d158150fa258db98b3
         data = {
           'user_nickname': user.nickname(),
           'logoutUrl': users.create_logout_url('/')
@@ -126,7 +134,6 @@ class WardrobePage(webapp2.RequestHandler):
         }
         self.response.write(response_html.render(values))
 
-
 class SuggestionsHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -142,72 +149,55 @@ class GetWeather(webapp2.RequestHandler):
         # response_html = jinja_env.get_template("templates/main_page.html")
 
         temp = self.request.get("temp")
-        # maxTemp=self.request.get("maxTemp")
-        # minTemp=self.request.get("minTemp")
+        maxTemp=self.request.get("maxTemp")
+        minTemp=self.request.get("minTemp")
         logging.info("It went through")
 
         response_html = jinja_env.get_template("templates/suggestions_page/suggestions.html")
-
         if (temp<35):
             values={
-                "shirt":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-                "pants":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.materials=="wool", WardrobeSave.materials=="denim", WardrobeSave.materials=="cotton", WardrobeSave.length=="long", WardrobeSave.user==user.nickname().nickname).fetch(),
-                "coat":WardrobeSave.query(WardrobeSave.type=="coat", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-                "jacket":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-                "sweater":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-                "skirt":[],
-                "dress":[]
+                'user_nickname': user.nickname(),
+                'logoutUrl': users.create_logout_url('/'),
+                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.materials=="wool", WardrobeSave.materials=="denim", WardrobeSave.materials=="cotton", WardrobeSave.length=="long", WardrobeSave.user==user.nickname().nickname).fetch(),
+                "coatWardrobe":WardrobeSave.query(WardrobeSave.type=="coat", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+                "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
             }
         elif(temp<=50):
             values={
-                "shirt":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-                "pants":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long", WardrobeSave.user==user.nickname()).fetch(),
-                "sweater":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-                "jacket":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-                "skirt":[],
-                "dress":[],
-                "coat":[]
-
+                'user_nickname': user.nickname(),
+                'logoutUrl': users.create_logout_url('/'),
+                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long", WardrobeSave.user==user.nickname()).fetch(),
+                "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+                "jacketWardrobe":WardrobeSave.query(WardrobeSave.type=="jacket", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
             }
         elif(temp<=60):
             values={
-                "shirt":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-                "pants":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long", WardrobeSave.user==user.nickname()).fetch(),
-                "sweater":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-                "jacket":[],
-                "coat":[],
-                "dress":[],
-                "skirt":[]
+                'user_nickname': user.nickname(),
+                'logoutUrl': users.create_logout_url('/'),
+                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long", WardrobeSave.user==user.nickname()).fetch(),
+                "sweaterWardrobe":WardrobeSave.query(WardrobeSave.type=="sweater", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
             }
         elif(temp<=70):
             values={
-                "shirt":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.length=="short", WardrobeSave.user==user.nickname()).fetch(),
-                "pants":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long", WardrobeSave.user==user.nickname()).fetch(),
-                "sweater":[],
-                "jacket":[],
-                "coat":[],
-                "dress":[],
-                "skirt":[]
+                'user_nickname': user.nickname(),
+                'logoutUrl': users.create_logout_url('/'),
+                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.length=="short", WardrobeSave.user==user.nickname()).fetch(),
+                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="long", WardrobeSave.user==user.nickname()).fetch()
             }
         else:
             values={
-                "shirt":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.length=="short", WardrobeSave.user==user.nickname()).fetch(),
-                "pants":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="short", WardrobeSave.user==user.nickname()).fetch(),
-                "skirt":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-                "dress":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
-                "jacket":[],
-                "coat":[],
-                "sweater":[]
+                'user_nickname': user.nickname(),
+                'logoutUrl': users.create_logout_url('/'),
+                "topsWardrobe":WardrobeSave.query(WardrobeSave.type=="shirt", WardrobeSave.laundry==False, WardrobeSave.length=="short", WardrobeSave.user==user.nickname()).fetch(),
+                "bottomWardrobe":WardrobeSave.query(WardrobeSave.type=="pants", WardrobeSave.laundry==False, WardrobeSave.length=="short", WardrobeSave.user==user.nickname()).fetch(),
+                "skirtWardrobe":WardrobeSave.query(WardrobeSave.type=="skirt", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch(),
+                "dressWardrobe":WardrobeSave.query(WardrobeSave.type=="dress", WardrobeSave.laundry==False, WardrobeSave.user==user.nickname()).fetch()
             }
 
-        for key in values:
-            urlList = []
-            for value in values[key]:
-                urlList.append(value.url)
-            values[key] = urlList
-
-        self.response.headers['Content-Type'] = "application/json"
-        self.response.write(json.dumps(values))
+        return self.response.write(response_html.render(values))
 
 class FavoritesHandler(webapp2.RequestHandler):
     def get(self):
@@ -258,7 +248,7 @@ class FavoritesHandler(webapp2.RequestHandler):
         top = self.request.get('topForm')
         bottom= self.request.get('bottomForm')
         skirt = self.request.get('skirtForm')
-        dress = self.request.get('dressForm')
+        dress = self.request.g7iiet('dressForm')
         coat = self.request.get('coatForm')
         jacket = self.request.get('jacketForm')
         sweater = self.request.get('sweaterForm')
@@ -354,7 +344,6 @@ class LaundryHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
-    ('/wardrobe', WardrobePage),
     ('/add_item', AddClothingHandler),
     ('/suggestion', SuggestionsHandler),
     ('/add_favorite', FavoritesHandler),
