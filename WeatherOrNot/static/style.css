@@ -7,6 +7,13 @@
     background-size:     cover;
 }
 
+body {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-color: rgb(34, 34, 34);
+}
+
 #headerz{
   font-size:30px;
   font-weight: 900;
@@ -39,7 +46,7 @@
 }
 
 .body{
-  background-color: yellow;
+  background-color: rgb(34, 34, 34);
 }
 
 .img2 {
