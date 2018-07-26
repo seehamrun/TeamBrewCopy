@@ -1,17 +1,68 @@
-.topBar{
-  margin: 0;
-  padding: 0;
-  background-color: #091929;
-  width: 100%;
-  height: 28px;
+body{
+  display: grid;
+  grid-template-rows: 30px 100px 60px 575px 300px 400px 120px;
 
+}
+.topBar{
+background-color: rgba(0,0,0,0.8);
+width: 100%;
+/* height: 10px; */
+overflow: hidden;
+
+}
+
+.logo {
+  background-color: white;
+  width: 100%;
+  overflow: hidden;
+}
+
+#logoForCompany{
+transform: scale(.5);
+padding-left: 55%;
+
+}
+
+.underTopBar{
+background-color: white;
+/* margin-top: 10px; */
+padding-top: 0;
+display: block;
+position: relative;
+}
+
+.nav-bar{
+  /* top: 0;
+  right: 0;
+  left: 0; */
+  z-index: 9999;
+  display: block;
+  margin: 0;
+  width: 100%;
+  min-width: 1024px;
+  /* height: 48px; */
+  max-height: 44px;
+  /* background: #333; */
+  /* background: rgba(0,0,0,0.8); */
+  font-size: 17px;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-weight: normal;
+  box-sizing: content-box;
+  margin: 0;
+  padding-bottom: 6px;
+  pointer-events: auto;
+  letter-spacing: normal;
+  /* ------------ */
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  vertical-align: top;
 }
 .officialMenu{
   margin: 0;
   padding-top: 0;
   width: 100%;
   height: 250px;
-  background-color: white;
   padding-bottom: 0;
 }
 
@@ -19,12 +70,12 @@ h1{
   padding-top: 20px;
   text-align: center;
   font-size: 20px;
-  font-family: Roboto, sans-serif;
 }
 #menu{
   display: table;
   margin: 0 auto;
-  padding-top: 25px;
+  padding-top: 10px;
+  padding-bottom: 6px;
 }
 
 #menu li{
@@ -61,26 +112,28 @@ h1{
   right: 0;
 }
 
-.centeredImageofHome{
-    width: 100%;
-    height: 400px;
-    overflow:
+#meetTheMakers{
+  font-weight: lighter;
 }
-.hereIsTheImage {
-    margin-top: 0;
-    padding-top: 0;
+
+.imageWithCenterText{
+  background-color: green;
+  overflow: hidden;
 }
+
+
+
 
 .center {
     position: absolute;
     top: 27%;
-    left: 32%;
+    left: 34%;
     padding-top: 100px;
     text-align: center;
     color: gray;
     font-size: 60px;
-    font-weight: bold;
-    font-family: Roboto, sans-serif;
+    font-weight: 500;
+    font-family: Trebuchet MS, sans-serif;
 }
 
 .Click {
@@ -96,16 +149,11 @@ h1{
 }
 
 #clothesHangerDisplay {
-  background-image: url("https://wallpapercave.com/wp/wp1866272.jpg");
 
-    clip: rect(335px, auto, auto, auto);
-    display: block;
-    border-radius: 8px;
+    display: inline-block;
     width: 100%;
     height: auto;
-    position: absolute;
-    bottom: 10px;
-    opacity: 0.8;
+    opacity: 1.0;
     overflow: hidden;
 }
 
@@ -117,8 +165,27 @@ h1{
   transform: scale(2.7);
 }
 
-.belowPicture{
-  padding-top: 0;
-  height: 500px;
-  width: 100%;
+.underImage {
+  background-color: white;
+}
+
+
+.punchLine {
+  padding-top: 50px;
+  color: #5a5a5a;
+  font-size: 450%;
+  font-weight: lighter;
+  font-family: Open Sans, sans-serif;
+  text-align: center;
+  /* padding-top: 50px;
+  padding-bottom: 50px; */
+
+}
+
+.weatherAPIDIV{
+  background-color: #f5f5f5;
+}
+
+.footer{
+  background-color: rgba(0,0,0,0.8);
 }
