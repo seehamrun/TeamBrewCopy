@@ -16,31 +16,31 @@ fetch("https://api.worldweatheronline.com/premium/v1/weather.ashx?key=" + weathe
         // alert("Sent")
         console.log(clothing)
         clothing.shirt.forEach((element) => {
-          tops.innerHTML += "<img src='" + element + "'/>"
+          tops.innerHTML += "<img class='pictures' src='" + element + "'/>"
         });
 
         clothing.pants.forEach((element) => {
-          bottoms.innerHTML += "<img src='" + element + "'/>"
+          bottoms.innerHTML += "<img class='pictures' src='" + element + "'/>"
         });
 
         clothing.coat.forEach((element) => {
-          coats.innerHTML += "<img src='" + element + "'/>"
+          coats.innerHTML += "<img class='pictures' src='" + element + "'/>"
         });
 
         clothing.jacket.forEach((element) => {
-          jackets.innerHTML += "<img src='" + element + "'/>"
+          jackets.innerHTML += "<img class='pictures' src='" + element + "'/>"
         });
 
         clothing.sweater.forEach((element) => {
-          sweaters.innerHTML += "<img src='" + element + "'/>"
+          sweaters.innerHTML += "<img class='pictures' src='" + element + "'/>"
         });
 
         clothing.skirt.forEach((element) => {
-          skirts.innerHTML += "<img src='" + element + "'/>"
+          skirts.innerHTML += "<img class='pictures' src='" + element + "'/>"
         });
 
         clothing.dress.forEach((element) => {
-          dresses.innerHTML += "<img src='" + element + "'/>"
+          dresses.innerHTML += "<img class='pictures' src='" + element + "'/>"
         });
       })
 
