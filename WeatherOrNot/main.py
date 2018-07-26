@@ -51,7 +51,7 @@ class MainPage(webapp2.RequestHandler):
         response_html = jinja_env.get_template("templates/main_page.html")
 
         temp = self.request.get("temp")
-        weather(temp)
+        # weather(temp)
 
         data = {
           'user_nickname': user.nickname(),
