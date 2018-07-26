@@ -203,7 +203,7 @@ class FavoritesHandler(webapp2.RequestHandler):
         itemKeys = []
         logging.info(self.request.POST)
         for keys in self.request.POST.keys():
-            if keys == "laundry" or keys=="delete" or keys=="toWardrobe":
+            if keys == "laundry" or keys=="delete" or keys=="toWardrobe" or keys=="worn":
                 button = keys
             else:
                 itemKeys.append(keys)
@@ -318,6 +318,25 @@ class LaundryHandler(webapp2.RequestHandler):
             "laundry":WardrobeSave.query(WardrobeSave.laundry==True).fetch(),
         }
         self.response.write(response_html.render(values))
+    def post(self):
+        button = None
+        itemKeys = []
+        logging.info(self.request.POST)
+        for keys in self.request.POST.keys():
+            if keys=="toWardrobe":
+                button = keys
+            else:
+                itemKeys.append(keys)
+
+        for itemKey in itemKeys:
+            DBKey = ndb.Key(urlsafe=itemKey)
+            TheItem = DBKey.get()
+            if button == "toWardrobe":
+                TheItem.laundry = False
+                TheItem.put()
+
+        time.sleep(1)
+        self.redirect("/add_favorite")
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
