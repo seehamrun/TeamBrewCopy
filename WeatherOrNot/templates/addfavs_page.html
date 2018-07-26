@@ -46,12 +46,12 @@
         <p></p>
       {% for top in topsWardrobe %}
         <input type="radio" name="topForm" id="tops" value="{{top.url}}"/>
-        <label for="tops">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp;</label>
+        <label class = "btns" for="tops">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp;</label>
       {% endfor %}
       <p></p>
       {% for top in topsWardrobe %}
         <input type="checkbox" id="myCheck" name="{{top.key.urlsafe()}}"/>
-        <label for="myCheck">Select Item&emsp; &emsp; &emsp; &ensp; &ensp; &ensp; &emsp; &emsp; &emsp;</label>
+        <label class = "btns" for="myCheck">Select Item&emsp; &emsp; &emsp; &ensp; &ensp; &ensp; &emsp; &emsp; &emsp;</label>
       {% endfor %}
       <br /><br />
     </div>
@@ -64,12 +64,12 @@
       <p></p>
     {% for pant in pantsWardrobe %}
       <input type="radio" name="bottomForm" id="bottoms" value="{{pant.url}}"/>
-      <label for="bottoms">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp;</label>
+      <label class = "btns" for="bottoms">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp;</label>
     {% endfor %}
     <p></p>
   {% for pant in pantsWardrobe %}
     <input type="checkbox" name="{{pant.key.urlsafe()}}" id="myCheck"/>
-    <label for="myCheck">Select Item&emsp; &emsp; &emsp; &ensp; &ensp; &ensp; &emsp; &emsp; &emsp;</label>
+    <label class = "btns" for="myCheck">Select Item&emsp; &emsp; &emsp; &ensp; &ensp; &ensp; &emsp; &emsp; &emsp;</label>
   {% endfor %}
     <br /><br />
     </div>
@@ -82,12 +82,12 @@
       <p> </p>
     {% for skirt in skirtWardrobe %}
     <input type="radio" name="skirtForm" id="skirts" value="{{skirt.url}}"/>
-    <label for="skirts">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp;</label>
+    <label class = "btns" for="skirts">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp;</label>
     {% endfor %}
     <p></p>
   {% for skirt in skirtWardrobe %}
     <input type="checkbox" name="{{skirt.key.urlsafe()}}" id="myCheck"/>
-    <label for="myCheck">Select Item&emsp; &emsp; &emsp; &ensp; &ensp; &ensp; &emsp; &emsp; &emsp;</label>
+    <label class = "btns" for="myCheck">Select Item&emsp; &emsp; &emsp; &ensp; &ensp; &ensp; &emsp; &emsp; &emsp;</label>
   {% endfor %}
     <br /><br />
     </div>
@@ -100,12 +100,12 @@
       <p> </p>
     {% for sweater in sweaterWardrobe %}
     <input type="radio" name="sweaterForm" id="sweaters" value="{{sweater.url}}"/>
-    <label for="sweaters">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; </label>
+    <label class = "btns" for="sweaters">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; </label>
     {% endfor %}
     <p></p>
     {% for sweater in sweaterWardrobe %}
       <input type="checkbox" name="{{sweater.key.urlsafe()}}" id="myCheck"/>
-      <label for="myCheck">Select Item&emsp; &emsp; &emsp; &ensp; &ensp; &ensp; &emsp; &emsp; &emsp;</label>
+      <label class = "btns" for="myCheck">Select Item&emsp; &emsp; &emsp; &ensp; &ensp; &ensp; &emsp; &emsp; &emsp;</label>
     {% endfor %}
     <br /><br />
     </div>
@@ -118,12 +118,12 @@
       <p> </p>
     {% for coat in coatWardrobe %}
     <input type="radio" name="coatForm" id="coats" value="{{coat.url}}"/>
-    <label for="coats">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; </label>
+    <label class = "btns" for="coats">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; </label>
     {% endfor %}
     <p></p>
     {% for coat in coatWardrobe %}
     <input type="checkbox" name="{{coat.key.urlsafe()}}" id="myCheck"/>
-    <label for="myCheck">Select Item&emsp; &emsp; &emsp; &ensp; &ensp; &ensp; &emsp; &emsp; &emsp;</label>
+    <label class = "btns" for="myCheck">Select Item&emsp; &emsp; &emsp; &ensp; &ensp; &ensp; &emsp; &emsp; &emsp;</label>
     {% endfor %}
     <br /><br />
     </div>
@@ -136,12 +136,12 @@
       <p> </p>
     {% for jacket in jacketWardrobe %}
     <input type="radio" name="jacketForm" id="jackets" value="{{jacket.url}}"/>
-    <label for="jackets">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; </label>
+    <label class = "btns" for="jackets">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; </label>
     {% endfor %}
     <p></p>
     {% for jacket in jacketWardrobe %}
     <input type="checkbox" name="{{jacket.key.urlsafe()}}" id="myCheck"/>
-    <label for="myCheck">Select Item&emsp; &emsp; &emsp; &ensp; &ensp; &ensp; &emsp; &emsp; &emsp;</label>
+    <label class = "btns" for="myCheck">Select Item&emsp; &emsp; &emsp; &ensp; &ensp; &ensp; &emsp; &emsp; &emsp;</label>
     {% endfor %}
     <br /><br />
     </div>
@@ -154,12 +154,12 @@
       <p></p>
     {% for dress in dressWardrobe %}
     <input type="radio" name="dressForm" id="dresses" value="{{dress.url}}"/>
-    <label for="dresses">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; </label>
+    <label class = "btns" for="dresses">Add to Favorites &emsp; &emsp; &emsp; &emsp; &emsp; </label>
     {% endfor %}
     <p></p>
     {% for dress in dressWardrobe %}
     <input type="checkbox" name="{{dress.key.urlsafe()}}" id="myCheck"/>
-    <label for="myCheck">Select Item&emsp; &emsp; &emsp; &ensp; &ensp; &ensp; &emsp; &emsp; &emsp;</label>
+    <label class = "btns" for="myCheck">Select Item&emsp; &emsp; &emsp; &ensp; &ensp; &ensp; &emsp; &emsp; &emsp;</label>
     {% endfor %}
     <br /><br />
     </div>
