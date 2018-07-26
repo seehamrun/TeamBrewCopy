@@ -50,15 +50,16 @@
 #pic {
   float: right;
   border-right: 10px;
+  border-radius: 5px;
 }
 
 #condition {
   float: right;
 }
 
-#twitter {
+/* #twitter {
   height: 8%;
-}
+} */
 
 #bottomTemp {
   text-align: center;
