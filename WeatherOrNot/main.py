@@ -59,8 +59,10 @@ class MainPage(webapp2.RequestHandler):
         response_html = jinja_env.get_template("templates/main_page.html")
 
         temp = self.request.get("temp")
+
         condition = self.request.get("condition")
         condition = "cloudy"
+
         data = {
           'user_nickname': user.nickname(),
           'logoutUrl': users.create_logout_url('/')
