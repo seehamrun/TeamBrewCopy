@@ -38,9 +38,9 @@
       <p>Tops:</p>
       {% for top in topsWardrobe %}
         <span class='itemContainer'>
-          Checkbox: <input type="checkbox" id="myCheck" name="{{top.key.urlsafe()}}">
+          Checkbox: <input type="checkbox" id="myCheck" name="{{top.key.urlsafe()}}"><br>
           <img class = "img" src = "{{top.url}}" width="500" height="375" />
-
+          
         </span>
       {% endfor %}
       <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>

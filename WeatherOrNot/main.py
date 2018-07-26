@@ -56,7 +56,7 @@ class MainPage(webapp2.RequestHandler):
 
     def post(self):
         logging.info(self.request.POST)
-        zipCode = self.request.get('zip')
+        zipCode = int(self.request.get('zip'))
         user=users.get_current_user()
         stored_zip = ZipSave(zip=zipCode, user=user.nickname())
         stored_zip.put()

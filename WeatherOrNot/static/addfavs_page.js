@@ -1,6 +1,6 @@
 // Makes the element with ID 'resultPane' visible, and sets the element with ID
 // 'result' to contain resultJson
-var today = new Date();
+
 
 // contacts our server, and asks it to add gifUrl to the list of favorite GIFs.
 // doneCallback should be a function, which addGifToFavorites will invoke when
@@ -11,6 +11,7 @@ function addGifToFavorites(doneCallback) {
   jQuery.post("/list_favorite", {top, bottom}, doneCallback);
 }
 function addOutfitToHistory(doneCallback){
+  var today = new Date();
   var top = document.querySelector('#tops').value;
   var bottom= document.querySelector('#bottoms').value;
   jQuery.post("/calendar", {today, top, bottom}, doneCallback);
@@ -24,7 +25,7 @@ function submitClick() {
 }
 
 function woreClick(){
-  addOutfitToHistory(()=> {
+  addOutfitToHistory( ()=> {
     alert('yay')
   })
 }
