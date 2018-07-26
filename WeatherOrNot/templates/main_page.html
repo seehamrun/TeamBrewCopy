@@ -25,9 +25,6 @@
   <nav class="navbar navbar-inverse">
     <ul class = "nav navbar-nav">
       <li><h1 id="headerz">Weather or Not</h1></li>
-      <li><a href="http://twitter.com/?status=My outfit is faab!"><img class="img2" src="http://www.anthonysgulfport.com/wp-content/uploads/2014/09/twitter-icon-300x300.png" id="twitter"/></a></li>
-      <li><a href="https://www.facebook.com/share.php?u="><img class="img2" src="https://seeklogo.com/images/F/facebook-icon-logo-C61047A9E7-seeklogo.com.png" id="facebook"/></a></li>
-      <li><a href="https://www.instagram.com"><img class="img2" src="https://instagram-brand.com/wp-content/uploads/2016/11/app-icon2.png" id="instagram"/></a></li>
     </ul>
     <ul class="nav navbar-nav">
       <li id="nav"><a href="/">Home</a></li>
@@ -37,10 +34,12 @@
       <li id="nav"><a href="/add_favorite">Add Favorite Outfits</a></li>
       <li id="nav"><a href="/list_favorite">Favorites!</a></li>
       <li id="nav"><a href="/calendar">History</a></li>
-      <li> <form method="post" id="nav"><input type="text" name="zip" id = "zip" value="zip code"><input type="submit" id = "submit" value="Submit"></form></li>
+      <li><a href="http://twitter.com/?status=My outfit is faab!"><img class="img2" src="http://www.anthonysgulfport.com/wp-content/uploads/2014/09/twitter-icon-300x300.png" id="twitter"/></a></li>
+      <li><a href="https://www.facebook.com/share.php?u="><img class="img2" src="https://seeklogo.com/images/F/facebook-icon-logo-C61047A9E7-seeklogo.com.png" id="facebook"/></a></li>
+      <li><a href="https://www.instagram.com"><img class="img2" src="https://instagram-brand.com/wp-content/uploads/2016/11/app-icon2.png" id="instagram"/></a></li>
     </ul>
   </nav>
-
+  <form method="post" id="nav"><input type="text" name="zip" id = "zip" value="zip code"><input type="submit" id = "submit" value="Submit"></form>
   <div id="logout" id="nav">
     <p id="nav">{{user_nickname}}</p>
     <a href="{{logoutUrl}}">Log Out</a>

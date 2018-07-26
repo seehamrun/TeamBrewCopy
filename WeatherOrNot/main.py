@@ -14,6 +14,7 @@ class ZipSave(ndb.Model):
 
 class CalendarSave(ndb.Model):
     user=ndb.StringProperty()
+    date=ndb.StringProperty()
     urltop=ndb.StringProperty()
     urlbottom=ndb.StringProperty()
     # urlskirt=ndb.StringProperty()
@@ -94,7 +95,6 @@ class WardrobePage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         logging.info('current user is: %s' % (user.nickname()))
-        response_html = jinja_env.get_template("templates/main_page.html")
 
         response_html = jinja_env.get_template("templates/wardrobe_page.html")
         values = {
