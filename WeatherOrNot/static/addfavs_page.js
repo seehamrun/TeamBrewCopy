@@ -1,5 +1,5 @@
 // Makes the element with ID 'resultPane' visible, and sets the element with ID
-// 'result' to contain resultJson 
+// 'result' to contain resultJson
 // contacts our server, and asks it to add gifUrl to the list of favorite GIFs.
 // doneCallback should be a function, which addGifToFavorites will invoke when
 // the gifUrl is saved successfully.
