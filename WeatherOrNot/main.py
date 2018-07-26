@@ -44,6 +44,14 @@ jinja_env = jinja2.Environment(
     autoescape=True)
 
 
+def getPicture(condition):
+    if condition == "cloudy":
+        return "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/NzxWBFh5eikpxgra9/videoblocks-blue-cloud-in-sky-at-sunny-weather_hwfd72vw_thumbnail-full01.png"
+    elif condition == "rainy":
+        return "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/D8qa-2E/rainy-stormy-darkness-wet-weather-background-depressed-sad-background_bzxjr4x7h__F0000.png"
+
+
+
 class MainPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -51,13 +59,18 @@ class MainPage(webapp2.RequestHandler):
         response_html = jinja_env.get_template("templates/main_page.html")
 
         temp = self.request.get("temp")
+        condition = self.request.get("condition")
         # weather(temp)
-
+        condition = "cloudy"
         data = {
           'user_nickname': user.nickname(),
           'logoutUrl': users.create_logout_url('/')
         }
+
+        data["background_url"] = getPicture(condition)
+
         return self.response.write(response_html.render(data))
+
     def post(self):
         logging.info(self.request.POST)
         zipCode = self.request.get('zip')
