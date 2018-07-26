@@ -7,13 +7,31 @@
     background-size:     cover;
 }
 
-#header{
-  font-family: Luminari, fantasy;
-  color: gray;
-  font-size: 30pt;
+#headerz{
+  font-size:30px;
   font-weight: 900;
   margin-left: 10px;
+  font-family:Futura;
+  color:white;
 }
+#header{
+  font-size:30px;
+  font-weight: 900;
+  margin-left: 10px;
+  font-family:Futura;
+}
+#submit{
+  color:black;
+}
+#zip{
+  color:black;
+}
+#nav{
+  font-family:Futura;
+  color:white;
+  font-size:18px;
+}
+
 
 #head{
   color:red;
@@ -57,7 +75,7 @@
 }
 
 #twitter {
-  height: 8%;
+  height: 6%;
 }
 
 #bottomTemp {

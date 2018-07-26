@@ -10,7 +10,7 @@ from google.appengine.api import urlfetch
 
 class ZipSave(ndb.Model):
     user=ndb.StringProperty()
-    zip=ndb.StringProperty()
+    zip=ndb.IntegerProperty()
 
 class CalendarSave(ndb.Model):
     user=ndb.StringProperty()
